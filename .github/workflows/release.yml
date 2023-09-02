@@ -35,6 +35,7 @@ jobs:
       PROJECT_PATH: ./src/Server/jcdcdev.Eco.SeedStorage.csproj
       BUILD_OUTPUT: ./build-output
       MOD_OUTPUT: ./build-assets/Mods/jcdcdev.Eco.SeedStorage
+      ARTIFACT_OUTPUT: ./build-assets
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -51,9 +52,8 @@ jobs:
           cp "${{ env.BUILD_OUTPUT }}/${{ env.PROJECT_NAME }}.dll" "${{ env.MOD_OUTPUT }}"      
       - uses: vimtor/action-zip@v1
         with:
-          files: ${{ env.MOD_OUTPUT }}/
+          files: ${{ env.ARTIFACT_OUTPUT }}
           dest: ${{ env.ASSET_NAME }}.zip
-          recursive: false
       - name: Upload package
         uses: actions/upload-artifact@v2
         with:
