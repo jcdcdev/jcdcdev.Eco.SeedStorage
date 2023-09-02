@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+<!--    <PropertyGroup>-->
+<!--        <EcoServerPath>C:\Program Files (x86)\Steam\steamapps\common\Eco Server</EcoServerPath>-->
+<!--        <EcoModsPath>$(EcoServerPath)\Mods\UserCode</EcoModsPath>-->
+<!--    </PropertyGroup>-->
+
+<!--    <Target Name="CopyDLLs" AfterTargets="Build">-->
+<!--        <Copy SourceFiles="$(TargetDir)$(ProjectName).dll"-->
+<!--              DestinationFolder="$(EcoModsPath)\$(ProjectName)"/>-->
+<!--    </Target>-->
+
+    <ItemGroup>
+        <PackageReference Include="ElixrMods.Framework" Version="3.4.6"/>
+    </ItemGroup>
+
+</Project>
