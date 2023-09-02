@@ -25,7 +25,7 @@ jobs:
           dest: jcdcdev.Eco.SeedStorage-dev-${{ github.sha }}.zip
       - name: Copy Unity Assets
         run: |
-          cp ./src/Client/BuildOutput/jcdcdev.Eco.SeedStorage.unity3d build-assets/Mods/jcdcdev.Eco.SeedStorage      
+          cp "./src/Client/BuildOutput/jcdcdev.Eco.SeedStorage.unity3d" "./build-assets/Mods/jcdcdev.Eco.SeedStorage/jcdcdev.Eco.SeedStorage.unity3d"      
       - name: Upload package
         uses: actions/upload-artifact@v2
         with:
