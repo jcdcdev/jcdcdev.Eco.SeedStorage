@@ -40,7 +40,7 @@ jobs:
         run: dotnet build ./src/Server/jcdcdev.Eco.SeedStorage.csproj -o build-assets/Mods/jcdcdev.Eco.SeedStorage --configuration Release -p:Version=${{ env.SEMVER }}
       - name: Copy Unity Assets
         run: |
-          cp "./src/Client/BuildOutput/jcdcdev.Eco.SeedStorage.unity3d" "build-assets/Mods/jcdcdev.Eco.SeedStorage"
+          cp ./src/Client/BuildOutput/jcdcdev.Eco.SeedStorage.unity3d build-assets/Mods/jcdcdev.Eco.SeedStorage      
       - uses: vimtor/action-zip@v1
         with:
           files: ./build-assets/
