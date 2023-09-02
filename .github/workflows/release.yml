@@ -8,12 +8,6 @@ on:
     types: [closed]
   workflow_dispatch:
   
-env:
-  PROJECT_NAME: jcdcdev.Eco.SeedStorage
-  PROJECT_PATH: ./src/Server/${{ env.PROJECT_NAME }}.csproj
-  BUILD_OUTPUT: ./build-output
-  BUILD_ASSETS: ./build-assets/Mods/${{ env.PROJECT_NAME }}
-
 jobs:
   determine-version:
     runs-on: ubuntu-latest
@@ -37,6 +31,10 @@ jobs:
     env:
       SEMVER: ${{ needs.determine-version.outputs.semVer }}
       ZIP_FILE: ${{ env.PROJECT_NAME }}-${{ env.SEMVER }}.zip
+      PROJECT_NAME: jcdcdev.Eco.SeedStorage
+      PROJECT_PATH: ./src/Server/${{ env.PROJECT_NAME }}.csproj
+      BUILD_OUTPUT: ./build-output
+      BUILD_ASSETS: ./build-assets/Mods/${{ env.PROJECT_NAME }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
