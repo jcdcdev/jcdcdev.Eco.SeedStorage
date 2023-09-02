@@ -31,7 +31,7 @@ jobs:
           cp "${{ env.BUILD_OUTPUT }}/${{ env.PROJECT_NAME }}.dll" "${{ env.MOD_OUTPUT }}"      
       - uses: vimtor/action-zip@v1
         with:
-          files: ${{ env.MOD_OUTPUT }}
+          files: ${{ env.MOD_OUTPUT }}/
           dest: ${{ env.ASSET_NAME }}.zip
       - name: Upload package
         uses: actions/upload-artifact@v2
