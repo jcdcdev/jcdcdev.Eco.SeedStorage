@@ -30,11 +30,11 @@ jobs:
     needs: determine-version
     env:
       SEMVER: ${{ needs.determine-version.outputs.semVer }}
-      ZIP_FILE: jcdcdev.Eco.SeedStorage-${{ needs.determine-version.outputs.semVer }}.zip
+      ASSET_NAME: jcdcdev.Eco.SeedStorage-${{ needs.determine-version.outputs.semVer }}.zip
       PROJECT_NAME: jcdcdev.Eco.SeedStorage
       PROJECT_PATH: ./src/Server/jcdcdev.Eco.SeedStorage.csproj
       BUILD_OUTPUT: ./build-output
-      BUILD_ASSETS: ./build-assets/Mods/jcdcdev.Eco.SeedStorage
+      MOD_OUTPUT: ./build-assets/Mods/jcdcdev.Eco.SeedStorage
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -46,18 +46,18 @@ jobs:
         run: dotnet build ${{ env.PROJECT_PATH }} -o ${{ env.BUILD_OUTPUT }} --configuration Release -p:Version=${{ env.SEMVER }}
       - name: Copy Unity Assets
         run: |
-          mkdir "${{ env.BUILD_ASSETS }}"
-          cp "./src/Client/BuildOutput/${{ env.PROJECT_NAME }}.unity3d" "${{ env.BUILD_ASSETS }}"      
-          cp "${{ env.BUILD_OUTPUT }}/${{ env.PROJECT_NAME }}.dll" "${{ env.BUILD_ASSETS }}"      
+          mkdir "${{ env.MOD_OUTPUT }}"
+          cp "./src/Client/BuildOutput/${{ env.PROJECT_NAME }}.unity3d" "${{ env.MOD_OUTPUT }}"      
+          cp "${{ env.BUILD_OUTPUT }}/${{ env.PROJECT_NAME }}.dll" "${{ env.MOD_OUTPUT }}"      
       - uses: vimtor/action-zip@v1
         with:
-          files: ${{ env.BUILD_ASSETS }}
-          dest: ${{ env.ZIP_FILE }}
+          files: ${{ env.MOD_OUTPUT }}
+          dest: ${{ env.ASSET_NAME }}
       - name: Upload package
         uses: actions/upload-artifact@v2
         with:
-          name: ${{ env.ZIP_FILE }}
-          path: ${{ env.ZIP_FILE }}
+          name: ${{ env.ASSET_NAME }}
+          path: ${{ env.ASSET_NAME }}.zip
       # - uses: nickelc/upload-to-modio@v2.1.0
       #   with:
       #     token: ${{ secrets.MODIO_TOKEN }}
