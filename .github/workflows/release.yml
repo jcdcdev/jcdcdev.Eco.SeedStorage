@@ -30,7 +30,7 @@ jobs:
     needs: determine-version
     env:
       SEMVER: ${{ needs.determine-version.outputs.semVer }}
-      ASSET_NAME: jcdcdev.Eco.SeedStorage-${{ needs.determine-version.outputs.semVer }}.zip
+      ASSET_NAME: jcdcdev.Eco.SeedStorage-${{ needs.determine-version.outputs.semVer }}
       PROJECT_NAME: jcdcdev.Eco.SeedStorage
       PROJECT_PATH: ./src/Server/jcdcdev.Eco.SeedStorage.csproj
       BUILD_OUTPUT: ./build-output
@@ -58,14 +58,14 @@ jobs:
         with:
           name: ${{ env.ASSET_NAME }}
           path: ${{ env.ASSET_NAME }}.zip
-      # - uses: nickelc/upload-to-modio@v2.1.0
-      #   with:
-      #     token: ${{ secrets.MODIO_TOKEN }}
-      #     game: ${{ secrets.MODIO_GAME }}
-      #     mod: ${{ secrets.MODIO_MOD }}
-      #     version: ${{ env.SEMVER }}
-      #     path: ${ {github.repository }}.zip
-      #     active: true
+  #     - uses: nickelc/upload-to-modio@v2.1.0
+  #       with:
+  #         token: ${{ secrets.MODIO_TOKEN }}
+  #         game: ${{ secrets.MODIO_GAME }}
+  #         mod: ${{ secrets.MODIO_MOD }}
+  #         version: ${{ env.SEMVER }}
+  #         path: ${{ env.ASSET_NAME }}.zip
+  #         active: true
   # post-deploy:
   #   runs-on: ubuntu-latest
   #   needs:

@@ -32,7 +32,7 @@ jobs:
       - uses: vimtor/action-zip@v1
         with:
           files: ${{ env.MOD_OUTPUT }}
-          dest: ${{ env.ASSET_NAME }}
+          dest: ${{ env.ASSET_NAME }}.zip
       - name: Upload package
         uses: actions/upload-artifact@v2
         with:
