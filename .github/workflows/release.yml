@@ -30,11 +30,11 @@ jobs:
     needs: determine-version
     env:
       SEMVER: ${{ needs.determine-version.outputs.semVer }}
-      ZIP_FILE: ${{ env.PROJECT_NAME }}-${{ env.SEMVER }}.zip
+      ZIP_FILE: jcdcdev.Eco.SeedStorage-${{ env.SEMVER }}.zip
       PROJECT_NAME: jcdcdev.Eco.SeedStorage
-      PROJECT_PATH: ./src/Server/${{ env.PROJECT_NAME }}.csproj
+      PROJECT_PATH: ./src/Server/jcdcdev.Eco.SeedStorage.csproj
       BUILD_OUTPUT: ./build-output
-      BUILD_ASSETS: ./build-assets/Mods/${{ env.PROJECT_NAME }}
+      BUILD_ASSETS: ./build-assets/Mods/jcdcdev.Eco.SeedStorage
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
