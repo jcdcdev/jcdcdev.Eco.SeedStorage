@@ -80,3 +80,4 @@ obj/
 /src/Client/Logs/
 /src/Client/AssetBundles/
 **/.idea/
+*.orig
