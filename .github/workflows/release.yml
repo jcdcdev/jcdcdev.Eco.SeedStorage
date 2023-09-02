@@ -38,14 +38,10 @@ jobs:
           dotnet-version: 7.0.x
       - name: Build project
         run: dotnet build src\jcdcdev.Eco.SeedStorage\jcdcdev.Eco.SeedStorage.csproj --configuration Release -p:Version=${{ env.SEMVER }}
-      
-      - uses: actions/zip@v2
+      - uses: vimtor/action-zip@v1
         with:
-          files: |
-            ./src/Server/bin/Release/jcdcdev.Eco.SeedStorage.dll
-            ./src/Client/BuildOutput/jcdcdev.Eco.SeedStorage.unity3d
-          args: -r -9 -o jcdcdev.Eco.SeedStorage-${{ env.SEMVER }}.zip
-
+          files: ./src/Server/bin/Release/jcdcdev.Eco.SeedStorage.dll ./src/Client/BuildOutput/jcdcdev.Eco.SeedStorage.unity3d
+          dest: jcdcdev.Eco.SeedStorage-${{ env.SEMVER }}.zip
       - name: Upload package
         uses: actions/upload-artifact@v2
         with:
