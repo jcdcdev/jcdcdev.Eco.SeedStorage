@@ -33,6 +33,7 @@ jobs:
         with:
           files: ${{ env.MOD_OUTPUT }}/
           dest: ${{ env.ASSET_NAME }}.zip
+          recursive: false
       - name: Upload package
         uses: actions/upload-artifact@v2
         with:
