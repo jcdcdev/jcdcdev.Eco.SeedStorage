@@ -19,13 +19,13 @@ jobs:
           dotnet-version: 7.0.x
       - name: Build project
         run: dotnet build ./src/Server/jcdcdev.Eco.SeedStorage.csproj -o build-assets/Mods/jcdcdev.Eco.SeedStorage --configuration Release
+      - name: Copy Unity Assets
+        run: |
+          cp "./src/Client/BuildOutput/jcdcdev.Eco.SeedStorage.unity3d" "./build-assets/Mods/jcdcdev.Eco.SeedStorage/jcdcdev.Eco.SeedStorage.unity3d"      
       - uses: vimtor/action-zip@v1
         with:
           files: ./build-assets/
           dest: jcdcdev.Eco.SeedStorage-dev-${{ github.sha }}.zip
-      - name: Copy Unity Assets
-        run: |
-          cp "./src/Client/BuildOutput/jcdcdev.Eco.SeedStorage.unity3d" "./build-assets/Mods/jcdcdev.Eco.SeedStorage/jcdcdev.Eco.SeedStorage.unity3d"      
       - name: Upload package
         uses: actions/upload-artifact@v2
         with:
