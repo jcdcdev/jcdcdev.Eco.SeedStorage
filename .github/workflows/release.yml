@@ -61,14 +61,6 @@ jobs:
         with:
           name: ${{ env.ASSET_NAME }}
           path: ${{ env.ASSET_NAME }}.zip
-      - uses: nickelc/upload-to-modio@v2.1.0
-        with:
-          token: ${{ secrets.MODIO_TOKEN }}
-          game: ${{ secrets.MODIO_GAME }}
-          mod: ${{ secrets.MODIO_MOD }}
-          version: ${{ env.SEMVER }}
-          path: ${{ env.ASSET_NAME }}.zip
-          active: true
   deploy:
     needs:
       - determine-version
