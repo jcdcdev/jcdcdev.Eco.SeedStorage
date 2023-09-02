@@ -21,6 +21,7 @@ jobs:
         run: dotnet build ./src/Server/jcdcdev.Eco.SeedStorage.csproj -o build-output --configuration Release
       - name: Copy Unity Assets
         run: |
+          mkdir "./build-assets/Mods/jcdcdev.Eco.SeedStorage"
           cp "./src/Client/BuildOutput/jcdcdev.Eco.SeedStorage.unity3d" "./build-assets/Mods/jcdcdev.Eco.SeedStorage"      
           cp "./build-output/jcdcdev.Eco.SeedStorage.dll" "./build-assets/Mods/jcdcdev.Eco.SeedStorage"      
       - uses: vimtor/action-zip@v1
