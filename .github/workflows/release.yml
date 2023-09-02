@@ -37,7 +37,7 @@ jobs:
         with:
           dotnet-version: 7.0.x
       - name: Build project
-        run: dotnet build src\jcdcdev.Eco.SeedStorage\jcdcdev.Eco.SeedStorage.csproj --configuration Release -p:Version=${{ env.SEMVER }}
+        run: dotnet build src\Server\jcdcdev.Eco.SeedStorage.csproj --configuration Release -p:Version=${{ env.SEMVER }}
       - uses: vimtor/action-zip@v1
         with:
           files: ./src/Server/bin/Release/jcdcdev.Eco.SeedStorage.dll ./src/Client/BuildOutput/jcdcdev.Eco.SeedStorage.unity3d
