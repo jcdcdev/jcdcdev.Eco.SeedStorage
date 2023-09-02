@@ -7,6 +7,13 @@ on:
       - main
     types: [closed]
   workflow_dispatch:
+  
+env:
+  PROJECT_NAME: jcdcdev.Eco.SeedStorage
+  PROJECT_PATH: ./src/Server/${{ env.PROJECT_NAME }}.csproj
+  BUILD_OUTPUT: ./build-output
+  BUILD_ASSETS: ./build-assets/Mods/${{ env.PROJECT_NAME }}
+
 jobs:
   determine-version:
     runs-on: ubuntu-latest
@@ -29,6 +36,7 @@ jobs:
     needs: determine-version
     env:
       SEMVER: ${{ needs.determine-version.outputs.semVer }}
+      ZIP_FILE: ${{ env.PROJECT_NAME }}-${{ env.SEMVER }}.zip
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -37,20 +45,21 @@ jobs:
         with:
           dotnet-version: 7.0.x
       - name: Build project
-        run: dotnet build ./src/Server/jcdcdev.Eco.SeedStorage.csproj -o build-output --configuration Release -p:Version=${{ env.SEMVER }}
+        run: dotnet build ${{ env.PROJECT_PATH }} -o ${{ env.BUILD_OUTPUT }} --configuration Release -p:Version=${{ env.SEMVER }}
       - name: Copy Unity Assets
         run: |
-          cp "./src/Client/BuildOutput/jcdcdev.Eco.SeedStorage.unity3d" "./build-assets/Mods/jcdcdev.Eco.SeedStorage/jcdcdev.Eco.SeedStorage.unity3d"      
-          cp "./build-output/jcdcdev.Eco.SeedStorage.dll" "./build-assets/Mods/jcdcdev.Eco.SeedStorage/jcdcdev.Eco.SeedStorage.dll"         
+          mkdir "${{ env.BUILD_ASSETS }}"
+          cp "./src/Client/BuildOutput/${{ env.PROJECT_NAME }}.unity3d" "${{ env.BUILD_ASSETS }}"      
+          cp "${{ env.BUILD_OUTPUT }}/${{ env.PROJECT_NAME }}.dll" "${{ env.BUILD_ASSETS }}"      
       - uses: vimtor/action-zip@v1
         with:
-          files: ./build-assets/
-          dest: jcdcdev.Eco.SeedStorage-${{ env.SEMVER }}.zip
+          files: ${{ env.BUILD_ASSETS }}
+          dest: ${{ env.ZIP_FILE }}
       - name: Upload package
         uses: actions/upload-artifact@v2
         with:
-          name: jcdcdev.Eco.SeedStorage-${{ env.SEMVER }}
-          path: jcdcdev.Eco.SeedStorage-${{ env.SEMVER }}.zip
+          name: ${{ env.ZIP_FILE }}
+          path: ${{ env.ZIP_FILE }}
       # - uses: nickelc/upload-to-modio@v2.1.0
       #   with:
       #     token: ${{ secrets.MODIO_TOKEN }}

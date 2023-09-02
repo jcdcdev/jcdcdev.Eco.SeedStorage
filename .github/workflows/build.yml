@@ -5,11 +5,18 @@ on:
     branches: "*"
   workflow_dispatch:
 
+env:
+  PROJECT_NAME: jcdcdev.Eco.SeedStorage
+  PROJECT_PATH: ./src/Server/${{ env.PROJECT_NAME }}.csproj
+  BUILD_OUTPUT: ./build-output
+  BUILD_ASSETS: ./build-assets/Mods/${{ env.PROJECT_NAME }}
+
 jobs:
   build:
 
     runs-on: windows-latest
-
+    env:
+      ZIP_FILE: ${{ env.PROJECT_NAME }}-dev-${{ github.sha }}.zip
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -18,18 +25,18 @@ jobs:
         with:
           dotnet-version: 7.0.x
       - name: Build project
-        run: dotnet build ./src/Server/jcdcdev.Eco.SeedStorage.csproj -o build-output --configuration Release
+        run: dotnet build ${{ env.PROJECT_PATH }} -o ${{ env.BUILD_OUTPUT }} --configuration Release
       - name: Copy Unity Assets
         run: |
-          mkdir "./build-assets/Mods/jcdcdev.Eco.SeedStorage"
-          cp "./src/Client/BuildOutput/jcdcdev.Eco.SeedStorage.unity3d" "./build-assets/Mods/jcdcdev.Eco.SeedStorage"      
-          cp "./build-output/jcdcdev.Eco.SeedStorage.dll" "./build-assets/Mods/jcdcdev.Eco.SeedStorage"      
+          mkdir "${{ env.BUILD_ASSETS }}"
+          cp "./src/Client/BuildOutput/${{ env.PROJECT_NAME }}.unity3d" "${{ env.BUILD_ASSETS }}"      
+          cp "${{ env.BUILD_OUTPUT }}/${{ env.PROJECT_NAME }}.dll" "${{ env.BUILD_ASSETS }}"      
       - uses: vimtor/action-zip@v1
         with:
-          files: ./build-assets/
-          dest: jcdcdev.Eco.SeedStorage-dev-${{ github.sha }}.zip
+          files: ${{ env.BUILD_ASSETS }}
+          dest: ${{ env.ZIP_FILE }}
       - name: Upload package
         uses: actions/upload-artifact@v2
         with:
-          name: jcdcdev.Eco.SeedStorage-dev-${{ github.sha }}
-          path: jcdcdev.Eco.SeedStorage-dev-${{ github.sha }}.zip
+          name: ${{ env.ZIP_FILE }}
+          path: ${{ env.ZIP_FILE }}
