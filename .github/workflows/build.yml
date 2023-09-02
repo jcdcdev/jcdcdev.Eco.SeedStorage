@@ -21,4 +21,4 @@ jobs:
           dotnet-version: 7.0.x
 
       - name: Build project
-        run: dotnet build ./src/jcdcdev.Eco.SeedStorage.csproj --configuration Release
+        run: dotnet build ./Server/jcdcdev.Eco.SeedStorage.csproj --configuration Release
