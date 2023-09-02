@@ -11,21 +11,21 @@ jobs:
     runs-on: windows-latest
 
     steps:
-
       - name: Checkout repository
         uses: actions/checkout@v3
-
       - name: Setup .NET
         uses: actions/setup-dotnet@v2
         with:
           dotnet-version: 7.0.x
-
       - name: Build project
-        run: dotnet build ./Server/jcdcdev.Eco.SeedStorage.csproj -o build-assets --configuration Release
+        run: dotnet build ./src/Server/jcdcdev.Eco.SeedStorage.csproj -o build-assets/Mods/jcdcdev.Eco.SeedStorage --configuration Release
       - uses: vimtor/action-zip@v1
         with:
-          files: ./build-assets/jcdcdev.Eco.SeedStorage.dll ./src/Client/BuildOutput/jcdcdev.Eco.SeedStorage.unity3d
+          files: ./build-assets/
           dest: jcdcdev.Eco.SeedStorage-dev-${{ github.sha }}.zip
+      - name: Copy Unity Assets
+        run: |
+          cp "./src/Client/BuildOutput/jcdcdev.Eco.SeedStorage.unity3d" "build-assets/Mods/jcdcdev.Eco.SeedStorage"
       - name: Upload package
         uses: actions/upload-artifact@v2
         with:
