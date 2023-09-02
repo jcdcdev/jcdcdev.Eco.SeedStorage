@@ -3,6 +3,8 @@ name: Build Package
 on:
   pull_request:
     branches: "*"
+  workflow_dispatch:
+  
 jobs:
   build:
 
