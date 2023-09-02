@@ -79,3 +79,4 @@ obj/
 /src/Client/Temp
 /src/Client/Logs/
 /src/Client/AssetBundles/
+**/.idea/
