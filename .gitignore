@@ -73,3 +73,9 @@ crashlytics-build.properties
 /src/.idea/
 bin/
 obj/
+*/.idea/
+/src/Client/Packages/
+/src/Client/Library/
+/src/Client/Temp
+/src/Client/Logs/
+/src/Client/AssetBundles/
