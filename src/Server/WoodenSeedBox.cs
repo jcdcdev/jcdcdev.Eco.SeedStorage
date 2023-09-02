@@ -3,6 +3,7 @@ using Eco.Gameplay.Components;
 using Eco.Gameplay.Components.Auth;
 using Eco.Gameplay.Items;
 using Eco.Gameplay.Objects;
+using Eco.Gameplay.Skills;
 using Eco.Mods.TechTree;
 using Eco.Shared.Items;
 using Eco.Shared.Localization;
@@ -43,6 +44,7 @@ public class WoodenSeedBoxItem : WorldObjectItem<WoodenSeedBoxObject>
     public override DirectionAxisFlags RequiresSurfaceOnSides => 0 | DirectionAxisFlags.Down;
 }
 
+[RequiresSkill(typeof(FarmingSkill), 3)]
 [Ecopedia("Crafted Objects", "Storage", subPageName: "Wooden Seed Box")]
 public class WoodenSeedBoxRecipe : RecipeFamily
 {
@@ -50,14 +52,14 @@ public class WoodenSeedBoxRecipe : RecipeFamily
     {
         var recipe = new Recipe();
         recipe.Init(
-            name: "Wooden Seed Box",
+            name: "WoodenSeedBox",
             displayName: Localizer.DoStr("Wooden Seed Box"),
             ingredients: new List<IngredientElement>
             {
-                new("HewnLog", 10, typeof(CarpentrySkill),
-                    typeof(CarpentryLavishResourcesTalent)),
-                new("WoodBoard", 12, typeof(CarpentrySkill),
-                    typeof(CarpentryLavishResourcesTalent)),
+                new("HewnLog", 10, typeof(FarmingSkill),
+                    typeof(FarmingLavishResourcesTalent)),
+                new("WoodBoard", 12, typeof(FarmingSkill),
+                    typeof(FarmingLavishResourcesTalent)),
             },
             items: new List<CraftingElement>
             {
@@ -65,11 +67,11 @@ public class WoodenSeedBoxRecipe : RecipeFamily
             });
         Recipes = new List<Recipe> { recipe };
         ExperienceOnCraft = 3;
-        LaborInCalories = CreateLaborInCaloriesValue(60, typeof(CarpentrySkill));
+        LaborInCalories = CreateLaborInCaloriesValue(60, typeof(FarmingSkill));
         CraftMinutes = CreateCraftTimeValue(beneficiary: typeof(WoodenSeedBoxRecipe), start: 2,
-            skillType: typeof(CarpentrySkill), typeof(CarpentryFocusedSpeedTalent),
-            typeof(CarpentryParallelSpeedTalent));
+            skillType: typeof(FarmingSkill), typeof(FarmingFocusedSpeedTalent),
+            typeof(FarmingParallelSpeedTalent));
         Initialize(displayText: Localizer.DoStr("Wooden Seed Box"), recipeType: typeof(WoodenSeedBoxRecipe));
-        CraftingComponent.AddRecipe(tableType: typeof(CarpentryTableObject), recipe: this);
+        CraftingComponent.AddRecipe(tableType: typeof(ToolBenchObject), recipe: this);
     }
 }

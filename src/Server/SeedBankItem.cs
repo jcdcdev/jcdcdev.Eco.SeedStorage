@@ -43,7 +43,7 @@ public class SeedBankItem : WorldObjectItem<SeedBankObject>
     public override DirectionAxisFlags RequiresSurfaceOnSides => 0 | DirectionAxisFlags.Down;
 }
 
-[RequiresSkill(typeof(CarpentrySkill), 3)]
+[RequiresSkill(typeof(FarmingSkill), 6)]
 [Ecopedia("Crafted Objects", "Storage", subPageName: "Seed Bank")]
 public class SeedBankRecipe : RecipeFamily
 {
@@ -55,9 +55,9 @@ public class SeedBankRecipe : RecipeFamily
             displayName: Localizer.DoStr("Seed Bank"),
             ingredients: new List<IngredientElement>
             {
-                new(typeof(IronPipeItem), 6, typeof(CarpentrySkill), typeof(CarpentryLavishResourcesTalent)),
-                new(typeof(IronBarItem), 8, typeof(CarpentrySkill), typeof(CarpentryLavishResourcesTalent)),
-                new("Lumber", 20, typeof(CarpentrySkill), typeof(CarpentryLavishResourcesTalent)),
+                new(typeof(IronPipeItem), 6, typeof(FarmingSkill), typeof(FarmingLavishResourcesTalent)),
+                new(typeof(IronBarItem), 8, typeof(FarmingSkill), typeof(FarmingLavishResourcesTalent)),
+                new("Lumber", 20, typeof(FarmingSkill), typeof(FarmingLavishResourcesTalent)),
             },
             items: new List<CraftingElement>
             {
@@ -66,12 +66,12 @@ public class SeedBankRecipe : RecipeFamily
 
         Recipes = new List<Recipe> { recipe };
         ExperienceOnCraft = 3;
-        LaborInCalories = CreateLaborInCaloriesValue(600, typeof(CarpentrySkill));
+        LaborInCalories = CreateLaborInCaloriesValue(600, typeof(FarmingSkill));
         CraftMinutes = CreateCraftTimeValue(beneficiary: typeof(SeedBankRecipe), start: 10,
-            skillType: typeof(CarpentrySkill), typeof(CarpentryFocusedSpeedTalent),
-            typeof(CarpentryParallelSpeedTalent));
+            skillType: typeof(FarmingSkill), typeof(FarmingFocusedSpeedTalent),
+            typeof(FarmingFocusedSpeedTalent));
             
         Initialize(displayText: Localizer.DoStr("Seed Bank"), recipeType: typeof(SeedBankRecipe));
-        CraftingComponent.AddRecipe(tableType: typeof(SawmillObject), recipe: this);
+        CraftingComponent.AddRecipe(tableType: typeof(ToolBenchObject), recipe: this);
     }
 }
