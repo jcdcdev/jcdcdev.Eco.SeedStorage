@@ -30,7 +30,7 @@ jobs:
     needs: determine-version
     env:
       SEMVER: ${{ needs.determine-version.outputs.semVer }}
-      ZIP_FILE: jcdcdev.Eco.SeedStorage-${{ env.SEMVER }}.zip
+      ZIP_FILE: jcdcdev.Eco.SeedStorage-${{ needs.determine-version.outputs.semVer }}.zip
       PROJECT_NAME: jcdcdev.Eco.SeedStorage
       PROJECT_PATH: ./src/Server/jcdcdev.Eco.SeedStorage.csproj
       BUILD_OUTPUT: ./build-output
