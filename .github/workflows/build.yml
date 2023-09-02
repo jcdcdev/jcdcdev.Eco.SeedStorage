@@ -16,7 +16,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v2
         with:
-          dotnet-version: 6.0.x
+          dotnet-version: 7.0.x
 
       - name: Build project
-        run: dotnet build src\Umbraco.Community.SimpleContentApps\Umbraco.Community.SimpleContentApps.csproj --configuration Release
+        run: dotnet build src\jcdcdev.Eco.SeedStorage\jcdcdev.Eco.SeedStorage.csproj --configuration Release

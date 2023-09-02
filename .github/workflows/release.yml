@@ -1,6 +1,6 @@
-name: Release Package
+name: Release mod
 run-name: >
-  push NuGet ${{github.repository}} #${{ github.run_number }}
+  push ${{github.repository}} #${{ github.run_number }}
 on:
   pull_request:
     branches:
