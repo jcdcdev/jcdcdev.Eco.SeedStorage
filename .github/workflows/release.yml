@@ -76,7 +76,8 @@ jobs:
       # - uses: actions/checkout@master
       - name: Checkout repository
         uses: actions/checkout@v3
-
+        with:
+          fetch-depth: 0
       - name: Download package
         uses: actions/download-artifact@v2
         with:
@@ -88,7 +89,7 @@ jobs:
         if: env.previous_tag
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          filter-author: (jaywcjlove|小弟调调™|dependabot|renovate\\[bot\\]|dependabot\\[bot\\]|Renovate Bot)
+          filter-author: (dependabot|renovate\\[bot\\]|dependabot\\[bot\\]|Renovate Bot)
           filter: '[R|r]elease[d]\s+[v|V]\d(\.\d+){0,2}'
       - name: Get the changelog
         run: echo "${{ steps.changelog.outputs.changelog }}"
