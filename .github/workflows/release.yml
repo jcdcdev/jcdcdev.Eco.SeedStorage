@@ -95,15 +95,18 @@ jobs:
           filter: '[R|r]elease[d]\s+[v|V]\d(\.\d+){0,2}'
       - name: Get the changelog
         run: echo "${{ steps.changelog.outputs.changelog }}"
-      # - uses: nickelc/upload-to-modio@v2.1.0
-      #   with:
-      #     token: ${{ secrets.MODIO_TOKEN }}
-      #     game: ${{ secrets.MODIO_GAME }}
-      #     mod: ${{ secrets.MODIO_MOD }}
-      #     version: ${{ env.SEMVER }}
-      #     path: ${{ env.ASSET_NAME }}.zip
-      #     active: true
-      #     changelog: ${{ steps.changelog.outputs.changelog }}
+      - uses: nickelc/upload-to-modio@v2.1.0
+        with:
+          token: ${{ secrets.MODIO_TOKEN }}
+          game: ${{ secrets.MODIO_GAME }}
+          mod: ${{ secrets.MODIO_MOD }}
+          version: ${{ env.SEMVER }}
+          path: ${{ env.ASSET_NAME }}.zip
+          active: true
+          changelog: |
+            Version ${{ env.SEMVER }}
+            
+            ${{ steps.changelog.outputs.changelog }}
       - name: Create Release
         uses: ncipollo/release-action@v1
         with:
@@ -116,17 +119,3 @@ jobs:
             https://github.com/${{ github.repository }}/compare/${{ env.previous_tag }}...${{env.SEMVER}}
 
             ${{ steps.changelog.outputs.changelog }}
-  #   name: post-deploy ${{ needs.determine-version.outputs.semVer }}
-  #   permissions:
-  #     contents: write
-  #   steps:
-  #     - uses: actions/checkout@v3
-  #     - name: Tag commit
-  #       env:
-  #         TAG: ${{ env.SEMVER }}
-  #         MESSAGE: ""
-  #       run: |
-  #         git config user.name "${GITHUB_ACTOR}"
-  #         git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
-  #         git tag -a "${TAG}" -m "${MESSAGE}" -f
-  #         git push origin "${TAG}"
