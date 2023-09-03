@@ -2,9 +2,6 @@ name: Release mod
 run-name: >
   push ${{github.repository}} #${{ github.run_number }}
 on:
-  push:
-    branches:
-      - main
   pull_request:
     branches:
       - main
@@ -25,7 +22,7 @@ jobs:
         with:
           versionSpec: '5.x'
       - name: Determine Version
-        id: gitversion # id to later be referenced
+        id: gitversion
         uses: gittools/actions/gitversion/execute@v0
   build:
     name: push ${{ needs.determine-version.outputs.semVer }}
@@ -75,7 +72,6 @@ jobs:
       SEMVER: ${{ needs.determine-version.outputs.semVer }}
       ASSET_NAME: ${{ needs.build.outputs.assetName }}
     steps:
-      # - uses: actions/checkout@master
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
@@ -105,7 +101,7 @@ jobs:
           active: true
           changelog: |
             Version ${{ env.SEMVER }}
-            
+
             ${{ steps.changelog.outputs.changelog }}
       - name: Create Release
         uses: ncipollo/release-action@v1
@@ -116,6 +112,6 @@ jobs:
           name: ${{ env.SEMVER }}
           tag: ${{ env.SEMVER }}
           body: |
-            https://github.com/${{ github.repository }}/compare/${{ env.previous_tag }}...${{env.SEMVER}}
+            Compare https://github.com/${{ github.repository }}/compare/${{ env.previous_tag }}...${{env.SEMVER}}
 
             ${{ steps.changelog.outputs.changelog }}
