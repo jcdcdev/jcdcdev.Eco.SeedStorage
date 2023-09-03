@@ -2,6 +2,9 @@ name: Release mod
 run-name: >
   push ${{github.repository}} #${{ github.run_number }}
 on:
+  push:
+    branches:
+      - main
   pull_request:
     branches:
       - main
@@ -71,37 +74,44 @@ jobs:
       ASSET_NAME: ${{ needs.build.outputs.assetName }}
     steps:
       # - uses: actions/checkout@master
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
       - name: Download package
         uses: actions/download-artifact@v2
         with:
           name: ${{ env.ASSET_NAME }}
-      - uses: nickelc/upload-to-modio@v2.1.0
+      - run: echo "previous_tag=$(git describe --tags --abbrev=0 2>/dev/null || echo '')" >> $GITHUB_ENV
+      - name: Generate changelog
+        id: changelog
+        uses: jaywcjlove/changelog-generator@main
+        if: env.previous_tag
         with:
-          token: ${{ secrets.MODIO_TOKEN }}
-          game: ${{ secrets.MODIO_GAME }}
-          mod: ${{ secrets.MODIO_MOD }}
-          version: ${{ env.SEMVER }}
-          path: ${{ env.ASSET_NAME }}.zip
-          active: true
-  post-deploy:
-    runs-on: ubuntu-latest
-    needs:
-      - determine-version
-      - build
-      - deploy
-    env:
-      SEMVER: ${{ needs.determine-version.outputs.semVer }}
-    name: post-deploy ${{ needs.determine-version.outputs.semVer }}
-    permissions:
-      contents: write
-    steps:
-      - uses: actions/checkout@v3
-      - name: Tag commit
-        env:
-          TAG: ${{ env.SEMVER }}
-          MESSAGE: ""
-        run: |
-          git config user.name "${GITHUB_ACTOR}"
-          git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
-          git tag -a "${TAG}" -m "${MESSAGE}" -f
-          git push origin "${TAG}"
+          token: ${{ secrets.GITHUB_TOKEN }}
+          filter-author: (jaywcjlove|小弟调调™|dependabot|renovate\\[bot\\]|dependabot\\[bot\\]|Renovate Bot)
+          filter: '[R|r]elease[d]\s+[v|V]\d(\.\d+){0,2}'
+      - name: Get the changelog
+        run: echo "${{ steps.changelog.outputs.changelog }}"
+      # - uses: nickelc/upload-to-modio@v2.1.0
+      #   with:
+      #     token: ${{ secrets.MODIO_TOKEN }}
+      #     game: ${{ secrets.MODIO_GAME }}
+      #     mod: ${{ secrets.MODIO_MOD }}
+      #     version: ${{ env.SEMVER }}
+      #     path: ${{ env.ASSET_NAME }}.zip
+      #     active: true
+
+  #   name: post-deploy ${{ needs.determine-version.outputs.semVer }}
+  #   permissions:
+  #     contents: write
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #     - name: Tag commit
+  #       env:
+  #         TAG: ${{ env.SEMVER }}
+  #         MESSAGE: ""
+  #       run: |
+  #         git config user.name "${GITHUB_ACTOR}"
+  #         git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+  #         git tag -a "${TAG}" -m "${MESSAGE}" -f
+  #         git push origin "${TAG}"
