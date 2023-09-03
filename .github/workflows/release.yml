@@ -113,7 +113,7 @@ jobs:
           name: ${{ env.SEMVER }}
           tag: ${{ env.SEMVER }}
           body: |
-            ${{ steps.changelog.outputs.compareurl }}
+            https://github.com/${{ github.repository }}/compare/${{ env.previous_tag }}...${{env.SEMVER}}
 
             ${{ steps.changelog.outputs.changelog }}
   #   name: post-deploy ${{ needs.determine-version.outputs.semVer }}
