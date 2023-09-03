@@ -69,6 +69,8 @@ jobs:
       - determine-version
       - build
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     env:
       SEMVER: ${{ needs.determine-version.outputs.semVer }}
       ASSET_NAME: ${{ needs.build.outputs.assetName }}
@@ -101,9 +103,12 @@ jobs:
       #     version: ${{ env.SEMVER }}
       #     path: ${{ env.ASSET_NAME }}.zip
       #     active: true
+      #     changelog: ${{ steps.changelog.outputs.changelog }}
       - name: Create Release
         uses: ncipollo/release-action@v1
         with:
+          artifacts: ${{ env.ASSET_NAME }}.zip
+          allowUpdates: true
           token: ${{ secrets.GITHUB_TOKEN }}
           name: ${{ env.SEMVER }}
           tag: ${{ env.SEMVER }}
