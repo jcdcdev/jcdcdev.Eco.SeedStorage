@@ -88,7 +88,8 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           filter-author: (jcdcdev|dependabot|renovate\\[bot\\]|dependabot\\[bot\\]|Renovate Bot)
-          filter: '[R|r]elease[d]\s+[v|V]\d(\.\d+){0,2}'
+          filter: '(?i)(type|feat|feature|style|chore|doc|docs|build|fix|test|refactor|website|revert|clean|perf|ci):|\+semver:\s?(patch|major)'
+          custom-emoji: 'feature🌟'
       - name: Get the changelog
         run: echo "${{ steps.changelog.outputs.changelog }}"
       - uses: nickelc/upload-to-modio@v2.1.0
