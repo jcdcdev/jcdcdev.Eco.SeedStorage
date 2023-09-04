@@ -81,3 +81,4 @@ obj/
 /src/Client/AssetBundles/
 **/.idea/
 *.orig
+/src/Client/Assets/Seed Storage/Icons/*.pdn*
