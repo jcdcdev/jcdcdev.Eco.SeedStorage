@@ -7,15 +7,15 @@ Tired of seeing seeds go to waste?
 
 Adds two new blocks to dramatically increase storage capacity and shelf life of seeds
 
-![In game screenshot of the Wooden Seed Box and Seed Bank](https://raw.githubusercontent.com/jcdcdev/jcdcdev.Eco.SeedStorage/dev/docs/screenshots/in-game-0.png)
+![In game screenshot of the Wooden Seed Box and Seed Bank](https://raw.githubusercontent.com/jcdcdev/jcdcdev.Eco.SeedStorage/main/docs/screenshots/in-game-0.png)
 
 ### Wooden Seed box
-![In game screenshot of the Wooden Seed Box inventory](https://raw.githubusercontent.com/jcdcdev/jcdcdev.Eco.SeedStorage/dev/docs/screenshots/in-game-seed-box.png)
+![In game screenshot of the Wooden Seed Box inventory](https://raw.githubusercontent.com/jcdcdev/jcdcdev.Eco.SeedStorage/main/docs/screenshots/in-game-seed-box.png)
 
 - 16 slots
   - 400 items
 ### Seed Bank
-![In game screenshot of the Seed Bank inventory](https://raw.githubusercontent.com/jcdcdev/jcdcdev.Eco.SeedStorage/dev/docs/screenshots/in-game-seed-bank.png)
+![In game screenshot of the Seed Bank inventory](https://raw.githubusercontent.com/jcdcdev/jcdcdev.Eco.SeedStorage/main/docs/screenshots/in-game-seed-bank.png)
 
 - 56 slots (one for each seed item)
   - 4000 items
