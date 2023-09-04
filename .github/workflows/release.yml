@@ -92,27 +92,27 @@ jobs:
           custom-emoji: 'feature🌟'
       - name: Get the changelog
         run: echo "${{ steps.changelog.outputs.changelog }}"
-      # - uses: nickelc/upload-to-modio@v2.1.0
-      #   with:
-      #     token: ${{ secrets.MODIO_TOKEN }}
-      #     game: ${{ secrets.MODIO_GAME }}
-      #     mod: ${{ secrets.MODIO_MOD }}
-      #     version: ${{ env.SEMVER }}
-      #     path: ${{ env.ASSET_NAME }}.zip
-      #     active: true
-      #     changelog: |
-      #       Version ${{ env.SEMVER }}
+      - uses: nickelc/upload-to-modio@v2.1.0
+        with:
+          token: ${{ secrets.MODIO_TOKEN }}
+          game: ${{ secrets.MODIO_GAME }}
+          mod: ${{ secrets.MODIO_MOD }}
+          version: ${{ env.SEMVER }}
+          path: ${{ env.ASSET_NAME }}.zip
+          active: true
+          changelog: |
+            Version ${{ env.SEMVER }}
 
-      #       ${{ steps.changelog.outputs.changelog }}
-      # - name: Create Release
-      #   uses: ncipollo/release-action@v1
-      #   with:
-      #     artifacts: ${{ env.ASSET_NAME }}.zip
-      #     allowUpdates: true
-      #     token: ${{ secrets.GITHUB_TOKEN }}
-      #     name: ${{ env.SEMVER }}
-      #     tag: ${{ env.SEMVER }}
-      #     body: |
-      #       Compare https://github.com/${{ github.repository }}/compare/${{ env.previous_tag }}...${{env.SEMVER}}
+            ${{ steps.changelog.outputs.changelog }}
+      - name: Create Release
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: ${{ env.ASSET_NAME }}.zip
+          allowUpdates: true
+          token: ${{ secrets.GITHUB_TOKEN }}
+          name: ${{ env.SEMVER }}
+          tag: ${{ env.SEMVER }}
+          body: |
+            Compare https://github.com/${{ github.repository }}/compare/${{ env.previous_tag }}...${{env.SEMVER}}
 
-      #       ${{ steps.changelog.outputs.changelog }}
+            ${{ steps.changelog.outputs.changelog }}
