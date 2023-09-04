@@ -88,7 +88,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           filter-author: (jcdcdev|dependabot|renovate\\[bot\\]|dependabot\\[bot\\]|Renovate Bot)
-          filter: '/(type|feat|feature|style|chore|doc|docs|build|fix|test|refactor|website|revert|clean|perf|ci):|\+semver:\s?(patch|major)/i'
+          filter: '\+semver:\s?(breaking|major|feature|minor|fix|patch)'
           custom-emoji: 'feature🌟'
       - name: Get the changelog
         run: echo "${{ steps.changelog.outputs.changelog }}"
