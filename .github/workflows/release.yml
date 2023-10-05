@@ -25,7 +25,7 @@ jobs:
         id: gitversion
         uses: gittools/actions/gitversion/execute@v0
   build:
-    name: push ${{ needs.determine-version.outputs.semVer }}
+    name: build ${{ needs.determine-version.outputs.semVer }}
     runs-on: windows-latest
     needs: determine-version
     env:
@@ -87,7 +87,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           filter-author: (jcdcdev|dependabot|renovate\\[bot\\]|dependabot\\[bot\\]|Renovate Bot)
-          filter: '\+semver:\s?(breaking|major|feature|minor|fix|patch)'
+          filter: '(\+semver:\s?(breaking|major|feature|minor|fix|patch)|\+changelog-ignore:.*|Merge.*)'
           custom-emoji: 'feature🌟'
       - name: Get the changelog
         run: echo "${{ steps.changelog.outputs.changelog }}"
