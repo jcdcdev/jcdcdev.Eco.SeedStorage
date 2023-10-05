@@ -1,48 +1,11 @@
 ﻿using Eco.Core.Items;
 using Eco.Gameplay.Components;
-using Eco.Gameplay.Components.Auth;
 using Eco.Gameplay.Items;
-using Eco.Gameplay.Objects;
 using Eco.Gameplay.Skills;
 using Eco.Mods.TechTree;
-using Eco.Shared.Items;
 using Eco.Shared.Localization;
-using Eco.Shared.Math;
-using Eco.Shared.Serialization;
 
-namespace jcdcdev.Eco.SeedStorage;
-
-[Serialized]
-[RequireComponent(typeof(PropertyAuthComponent))]
-[RequireComponent(typeof(LinkComponent))]
-[RequireComponent(typeof(PublicStorageComponent))]
-[RequireComponent(typeof(SolidAttachedSurfaceRequirementComponent))]
-[Ecopedia("Crafted Objects", "Storage", subPageName: "Wooden Seed Box")]
-public class WoodenSeedBoxObject : WorldObject, IRepresentsItem
-{
-    protected override void Initialize()
-    {
-        var storage = GetComponent<PublicStorageComponent>();
-        storage.Initialize(16);
-        storage.Storage.AddInvRestriction(new StackLimitRestriction(100));
-        storage.Storage.AddInvRestriction(new SeedRestriction());
-        storage.ShelfLifeMultiplier = 2.0f;
-    }
-
-    public override TableTextureMode TableTexture => TableTextureMode.Wood;
-
-    public Type RepresentedItemType => typeof(WoodenSeedBoxItem);
-}
-
-[Serialized]
-[LocDisplayName("Wooden Seed Box")]
-[Ecopedia("Crafted Objects", "Storage", createAsSubPage: true)]
-public class WoodenSeedBoxItem : WorldObjectItem<WoodenSeedBoxObject>
-{
-    public override LocString DisplayDescription => Localizer.DoStr("A storage box for seeds!");
-
-    public override DirectionAxisFlags RequiresSurfaceOnSides => 0 | DirectionAxisFlags.Down;
-}
+namespace jcdcdev.Eco.SeedStorage.WoodenSeedBox;
 
 [RequiresSkill(typeof(FarmingSkill), 3)]
 [Ecopedia("Crafted Objects", "Storage", subPageName: "Wooden Seed Box")]
