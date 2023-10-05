@@ -1,0 +1,20 @@
+<Project>
+    <ItemGroup>
+        <None Include="..\Client\BuildOutput\jcdcdev.Eco.SeedStorage.unity3d" CopyToOutputDirectory="Always"/>
+    </ItemGroup>
+
+    <Target Name="CopyDLLs" AfterTargets="Build" Condition="'$(Configuration)' == 'Debug'">
+        <PropertyGroup>
+            <ServerPath>C:\Program Files (x86)\Steam\steamapps\common\Eco Server</ServerPath>
+            <ModsPath>$(ServerPath)\Mods\UserCode</ModsPath>
+            <ModOutputPath>$(ModsPath)\$(ProjectName)</ModOutputPath>
+        </PropertyGroup>
+        <ItemGroup>
+            <LibFiles Include="$(MSBuildProjectDirectory)\lib\*.dll"/>
+            <ModFiles Include="$(TargetDir)$(ProjectName)*.dll;$(TargetDir)$(ProjectName)*.unity3d"/>
+        </ItemGroup>
+
+        <Copy SourceFiles="@(ModFiles)" DestinationFolder="$(ModOutputPath)"/>
+        <Copy SourceFiles="@(LibFiles)" DestinationFolder="$(ModsPath)"/>
+    </Target>
+</Project>
