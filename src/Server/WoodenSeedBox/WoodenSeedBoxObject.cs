@@ -16,6 +16,10 @@ namespace jcdcdev.Eco.SeedStorage.WoodenSeedBox;
 [Ecopedia("Crafted Objects", "Storage", subPageName: "Wooden Seed Box")]
 public abstract class WoodenSeedBoxObject : WorldObject, IRepresentsItem
 {
+    public override TableTextureMode TableTexture => TableTextureMode.Wood;
+
+    public Type RepresentedItemType => typeof(WoodenSeedBoxItem);
+
     protected override void Initialize()
     {
         var storage = GetComponent<PublicStorageComponent>();
@@ -24,8 +28,4 @@ public abstract class WoodenSeedBoxObject : WorldObject, IRepresentsItem
         storage.Storage.AddInvRestriction(new SeedRestriction());
         storage.ShelfLifeMultiplier = SeedStoragePlugin.Config.WoodenSeedBoxShelfLifeMultiplier;
     }
-
-    public override TableTextureMode TableTexture => TableTextureMode.Wood;
-
-    public Type RepresentedItemType => typeof(WoodenSeedBoxItem);
 }

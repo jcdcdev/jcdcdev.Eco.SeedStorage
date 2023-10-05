@@ -15,15 +15,15 @@ public class SeedBankRecipe : RecipeFamily
     {
         var recipe = new Recipe();
         recipe.Init(
-            name: "SeedBank",
-            displayName: Localizer.DoStr("Seed Bank"),
-            ingredients: new List<IngredientElement>
+            "SeedBank",
+            Localizer.DoStr("Seed Bank"),
+            new List<IngredientElement>
             {
                 new(typeof(IronPipeItem), 6, typeof(FarmingSkill), typeof(FarmingLavishResourcesTalent)),
                 new(typeof(IronBarItem), 8, typeof(FarmingSkill), typeof(FarmingLavishResourcesTalent)),
-                new("Lumber", 20, typeof(FarmingSkill), typeof(FarmingLavishResourcesTalent)),
+                new("Lumber", 20, typeof(FarmingSkill), typeof(FarmingLavishResourcesTalent))
             },
-            items: new List<CraftingElement>
+            new List<CraftingElement>
             {
                 new CraftingElement<SeedBankItem>()
             });
@@ -31,11 +31,11 @@ public class SeedBankRecipe : RecipeFamily
         Recipes = new List<Recipe> { recipe };
         ExperienceOnCraft = 3;
         LaborInCalories = CreateLaborInCaloriesValue(600, typeof(FarmingSkill));
-        CraftMinutes = CreateCraftTimeValue(beneficiary: typeof(SeedBankRecipe), start: 10,
-            skillType: typeof(FarmingSkill), typeof(FarmingFocusedSpeedTalent),
+        CraftMinutes = CreateCraftTimeValue(typeof(SeedBankRecipe), 10,
+            typeof(FarmingSkill), typeof(FarmingFocusedSpeedTalent),
             typeof(FarmingFocusedSpeedTalent));
-            
-        Initialize(displayText: Localizer.DoStr("Seed Bank"), recipeType: typeof(SeedBankRecipe));
-        CraftingComponent.AddRecipe(tableType: typeof(ToolBenchObject), recipe: this);
+
+        Initialize(Localizer.DoStr("Seed Bank"), typeof(SeedBankRecipe));
+        CraftingComponent.AddRecipe(typeof(ToolBenchObject), this);
     }
 }

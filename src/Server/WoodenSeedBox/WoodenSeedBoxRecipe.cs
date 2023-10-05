@@ -15,26 +15,26 @@ public class WoodenSeedBoxRecipe : RecipeFamily
     {
         var recipe = new Recipe();
         recipe.Init(
-            name: "WoodenSeedBox",
-            displayName: Localizer.DoStr("Wooden Seed Box"),
-            ingredients: new List<IngredientElement>
+            "WoodenSeedBox",
+            Localizer.DoStr("Wooden Seed Box"),
+            new List<IngredientElement>
             {
                 new("HewnLog", 10, typeof(FarmingSkill),
                     typeof(FarmingLavishResourcesTalent)),
                 new("WoodBoard", 12, typeof(FarmingSkill),
-                    typeof(FarmingLavishResourcesTalent)),
+                    typeof(FarmingLavishResourcesTalent))
             },
-            items: new List<CraftingElement>
+            new List<CraftingElement>
             {
                 new CraftingElement<WoodenSeedBoxItem>()
             });
         Recipes = new List<Recipe> { recipe };
         ExperienceOnCraft = 3;
         LaborInCalories = CreateLaborInCaloriesValue(60, typeof(FarmingSkill));
-        CraftMinutes = CreateCraftTimeValue(beneficiary: typeof(WoodenSeedBoxRecipe), start: 2,
-            skillType: typeof(FarmingSkill), typeof(FarmingFocusedSpeedTalent),
+        CraftMinutes = CreateCraftTimeValue(typeof(WoodenSeedBoxRecipe), 2,
+            typeof(FarmingSkill), typeof(FarmingFocusedSpeedTalent),
             typeof(FarmingParallelSpeedTalent));
-        Initialize(displayText: Localizer.DoStr("Wooden Seed Box"), recipeType: typeof(WoodenSeedBoxRecipe));
-        CraftingComponent.AddRecipe(tableType: typeof(ToolBenchObject), recipe: this);
+        Initialize(Localizer.DoStr("Wooden Seed Box"), typeof(WoodenSeedBoxRecipe));
+        CraftingComponent.AddRecipe(typeof(ToolBenchObject), this);
     }
 }

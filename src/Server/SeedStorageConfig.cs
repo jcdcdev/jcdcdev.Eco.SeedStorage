@@ -9,6 +9,7 @@ public class SeedStorageConfig
     [Category("Performance")]
     [Range(5, 120)]
     public float WoodenSeedBoxShelfLifeMultiplier { get; set; } = 2.0f;
+
     [Description("The multiplier used to determine Seed Bank shelf-life. Default = 4.0")]
     [Category("Performance")]
     [Range(5, 120)]

@@ -15,11 +15,11 @@ namespace jcdcdev.Eco.SeedStorage.SeedBank;
 [RequireComponent(typeof(PublicStorageComponent))]
 [RequireComponent(typeof(SolidAttachedSurfaceRequirementComponent))]
 [Ecopedia("Crafted Objects", "Storage", subPageName: "Seed Bank")]
-public abstract class SeedBankObject :  WorldObject, IRepresentsItem
+public abstract class SeedBankObject : WorldObject, IRepresentsItem
 {
-    public virtual Type RepresentedItemType => typeof(SeedBankItem);
     public override LocString DisplayName => Localizer.DoStr("Seed Bank");
     public override TableTextureMode TableTexture => TableTextureMode.Wood;
+    public virtual Type RepresentedItemType => typeof(SeedBankItem);
 
     protected override void Initialize()
     {

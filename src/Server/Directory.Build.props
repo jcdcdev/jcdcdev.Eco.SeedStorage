@@ -2,7 +2,7 @@
     <ItemGroup>
         <None Include="..\Client\BuildOutput\jcdcdev.Eco.SeedStorage.unity3d" CopyToOutputDirectory="Always"/>
     </ItemGroup>
-    
+
     <Target Name="CopyDLLs" AfterTargets="Build" Condition="'$(Configuration)' == 'Debug'">
         <PropertyGroup>
             <ServerPath>C:\Program Files (x86)\Steam\steamapps\common\Eco Server</ServerPath>

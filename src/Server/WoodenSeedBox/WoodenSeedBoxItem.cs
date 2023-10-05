@@ -8,7 +8,7 @@ namespace jcdcdev.Eco.SeedStorage.WoodenSeedBox;
 
 [Serialized]
 [LocDisplayName("Wooden Seed Box")]
-[Ecopedia("Crafted Objects", "Storage", createAsSubPage: true)]
+[Ecopedia("Crafted Objects", "Storage", true)]
 public class WoodenSeedBoxItem : WorldObjectItem<WoodenSeedBoxObject>
 {
     public override LocString DisplayDescription => Localizer.DoStr(
