@@ -14,7 +14,7 @@ namespace jcdcdev.Eco.SeedStorage.WoodenSeedBox;
 [RequireComponent(typeof(PublicStorageComponent))]
 [RequireComponent(typeof(SolidAttachedSurfaceRequirementComponent))]
 [Ecopedia("Crafted Objects", "Storage", subPageName: "Wooden Seed Box")]
-public abstract class WoodenSeedBoxObject : WorldObject, IRepresentsItem
+public class WoodenSeedBoxObject : WorldObject, IRepresentsItem
 {
     public override TableTextureMode TableTexture => TableTextureMode.Wood;
 

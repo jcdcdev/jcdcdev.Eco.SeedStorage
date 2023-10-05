@@ -15,7 +15,7 @@ namespace jcdcdev.Eco.SeedStorage.SeedBank;
 [RequireComponent(typeof(PublicStorageComponent))]
 [RequireComponent(typeof(SolidAttachedSurfaceRequirementComponent))]
 [Ecopedia("Crafted Objects", "Storage", subPageName: "Seed Bank")]
-public abstract class SeedBankObject : WorldObject, IRepresentsItem
+public class SeedBankObject : WorldObject, IRepresentsItem
 {
     public override LocString DisplayName => Localizer.DoStr("Seed Bank");
     public override TableTextureMode TableTexture => TableTextureMode.Wood;
