@@ -1,4 +1,5 @@
-﻿using Eco.Core.Items;
+﻿using Eco.Core;
+using Eco.Core.Items;
 using Eco.Gameplay.Items;
 using Eco.Shared.Localization;
 using Eco.Shared.Math;
@@ -12,7 +13,7 @@ namespace jcdcdev.Eco.SeedStorage.WoodenSeedBox;
 public class WoodenSeedBoxItem : WorldObjectItem<WoodenSeedBoxObject>
 {
     public override LocString DisplayDescription => Localizer.DoStr(
-        $"Basic storage for seeds! The Wooden Seed Box can store all seed types and increases shelf-life by {SeedStoragePlugin.Config.WoodenSeedBoxShelfLifeMultiplier}x");
+        $"Basic storage for seeds! The Wooden Seed Box can store all seed types and increases shelf-life by {PluginManager.GetPlugin<SeedStoragePlugin>().Config.WoodenSeedBoxShelfLifeMultiplier}x");
 
     public override DirectionAxisFlags RequiresSurfaceOnSides => 0 | DirectionAxisFlags.Down;
 }

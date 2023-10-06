@@ -1,4 +1,5 @@
-﻿using Eco.Core.Items;
+﻿using Eco.Core;
+using Eco.Core.Items;
 using Eco.Gameplay.Components;
 using Eco.Gameplay.Components.Auth;
 using Eco.Gameplay.Items;
@@ -20,12 +21,15 @@ public class WoodenSeedBoxObject : WorldObject, IRepresentsItem
 
     public Type RepresentedItemType => typeof(WoodenSeedBoxItem);
 
-    protected override void Initialize()
+    protected override void Initialize() => PluginManager.Controller.RunIfOrWhenInited(InitializeStorage);
+
+    private void InitializeStorage()
     {
+        var plugin = PluginManager.GetPlugin<SeedStoragePlugin>();
         var storage = GetComponent<PublicStorageComponent>();
         storage.Initialize(16);
         storage.Storage.AddInvRestriction(new StackLimitRestriction(100));
         storage.Storage.AddInvRestriction(new SeedRestriction());
-        storage.ShelfLifeMultiplier = SeedStoragePlugin.Config.WoodenSeedBoxShelfLifeMultiplier;
+        storage.ShelfLifeMultiplier = plugin.Config.WoodenSeedBoxShelfLifeMultiplier;
     }
 }

@@ -1,4 +1,5 @@
-﻿using Eco.Core.Items;
+﻿using Eco.Core;
+using Eco.Core.Items;
 using Eco.Gameplay.Items;
 using Eco.Shared.Localization;
 using Eco.Shared.Math;
@@ -13,7 +14,7 @@ public class SeedBankItem : WorldObjectItem<SeedBankObject>
 {
     public override LocString DisplayDescription =>
         Localizer.DoStr(
-            $"The ultimate storage for seeds! The Seed Bank can store all seed types and increases shelf-life by {SeedStoragePlugin.Config.SeedBankShelfLifeMultiplier}x");
+            $"The ultimate storage for seeds! The Seed Bank can store all seed types and increases shelf-life by {PluginManager.GetPlugin<SeedStoragePlugin>().Config.SeedBankShelfLifeMultiplier}x");
 
     public override DirectionAxisFlags RequiresSurfaceOnSides => 0 | DirectionAxisFlags.Down;
 }
