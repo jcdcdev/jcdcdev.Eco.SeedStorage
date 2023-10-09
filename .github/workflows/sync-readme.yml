@@ -18,7 +18,9 @@ jobs:
                 pandoc .github/README.md -o README.html
                 README_HTML_SINGLE_LINE=$(cat README.html | tr '\n' ' ')
                 README_HTML_ENCODED=$(echo "$README_HTML_SINGLE_LINE" | perl -MHTML::Entities -pe 'encode_entities($_);')
-                echo "README_HTML=$(README_HTML_ENCODED)" >> $GITHUB_ENV
+                echo "$README_HTML_SINGLE_LINE"
+                echo "$README_HTML_ENCODED"
+                echo "README_HTML=$README_HTML_ENCODED" >> $GITHUB_ENV
             - name: Echo README.html
               run: cat README.html
             - name: Update modio mod description
