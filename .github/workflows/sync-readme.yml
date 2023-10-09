@@ -11,13 +11,15 @@ jobs:
             - name: Install tools
               run: |
                 sudo apt-get install pandoc
+                sudo apt-get install jq
             - name: Convert README to HTML
               id: convert
               run: | 
                 pandoc .github/README.md -o README.html
                 README_HTML_SINGLE_LINE=$(cat README.html | tr '\n' ' ')
-                echo "$README_HTML_SINGLE_LINE"
-                echo "README_HTML=$(printf '%q' "$README_HTML_SINGLE_LINE")" >> $GITHUB_ENV
+                README_ENCODED=$(echo -n "$README_HTML" | jq -s -R -r @uri)
+                echo "$README_ENCODED"
+                echo "README_HTML=$(printf '%q' "$README_ENCODED")" >> $GITHUB_ENV
             - name: Update modio mod description
               run: |
                 curl -X PUT 'https://api.mod.io/v1/games/${{ secrets.MODIO_GAME }}/mods/${{ secrets.MODIO_MOD }}' \
