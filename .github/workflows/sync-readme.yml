@@ -12,6 +12,7 @@ jobs:
               run: |
                 sudo apt-get install pandoc
                 sudo apt-get install jq
+                sudo apt-get install zip
             - name: Convert README to HTML
               id: convert
               run: | 
@@ -37,12 +38,9 @@ jobs:
                 fi
             - name: Upload images to mod.io
               run: |
-                index=0
-                for file in docs/screenshots/*; do
-                    curl -X POST "https://api.mod.io/v1/games/${{ secrets.MODIO_GAME }}/mods/${{ secrets.MODIO_MOD }}/media" \
-                    -H 'Authorization: Bearer ${{ secrets.MODIO_TOKEN }}' \
-                    -H 'Content-Type: multipart/form-data' \ 
-                    -H 'Accept: application/json' \
-                    -F "image$index=@$file"
-                    index=$((index+1))
-                done
+                zip images.zip docs/screenshots/*
+                curl -X POST "https://api.mod.io/v1/games/${{ secrets.MODIO_GAME }}/mods/${{ secrets.MODIO_MOD }}/media" \
+                -H 'Authorization: Bearer ${{ secrets.MODIO_TOKEN }}' \
+                -H 'Content-Type: multipart/form-data' \ 
+                -H 'Accept: application/json' \
+                -F 'images=@images.zip'
