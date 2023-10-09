@@ -1,0 +1,24 @@
+name: Update modio mod description
+on:
+    workflow_dispatch:
+
+jobs:
+    update_mod_description:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v2
+            - name: Install pandoc
+              run: sudo apt-get install pandoc
+            - name: Convert README to HTML
+              id: convert
+              run: | 
+                pandoc .github/README.md -o README.html
+                echo "README_HTML=$(tr -d '\n' < README.html)" >> $GITHUB_ENV
+            - name: Echo README.html
+              run: cat README.html
+            - name: Update modio mod description
+              run: |
+                curl -X PUT 'https://api.mod.io/v1/games/${{ secrets.MODIO_GAME }}/mods/${{ secrets.MODIO_MOD }}' \
+                -H 'Authorization: Bearer ${{ secrets.MODIO_TOKEN }}' \
+                -d "description=${{ env.README_HTML }}"
