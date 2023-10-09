@@ -33,7 +33,7 @@ jobs:
                 -H 'Content-Type: multipart/form-data' \ 
                 -H 'Accept: application/json' \
                 -F "description=${{ env.README_HTML }}" \
-                -F 'homepage_url=$URL' \
+                -F "homepage_url=${URL}"
                
 
             # - name: Upload images to mod.io
