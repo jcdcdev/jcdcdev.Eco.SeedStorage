@@ -36,5 +36,4 @@ jobs:
                 -H 'Authorization: Bearer ${{ secrets.MODIO_TOKEN }}' \
                 -H 'Content-Type: multipart/form-data' \ 
                 -H 'Accept: application/json' \
-                -F "logo=@/docs/logo.png" \
-                -F 'images=@/images.zip'
+                -F "logo=@/docs/logo.png"
