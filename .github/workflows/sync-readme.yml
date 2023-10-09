@@ -11,18 +11,13 @@ jobs:
             - name: Install tools
               run: |
                 sudo apt-get install pandoc
-                sudo apt-get install perl
             - name: Convert README to HTML
               id: convert
               run: | 
                 pandoc .github/README.md -o README.html
                 README_HTML_SINGLE_LINE=$(cat README.html | tr '\n' ' ')
-                README_HTML_ENCODED=$(echo "$README_HTML_SINGLE_LINE" | perl -MHTML::Entities -pe 'encode_entities($_);')
                 echo "$README_HTML_SINGLE_LINE"
-                echo "$README_HTML_ENCODED"
-                echo "README_HTML=$README_HTML_ENCODED" >> $GITHUB_ENV
-            - name: Echo README.html
-              run: cat README.html
+                echo "README_HTML=$README_HTML_SINGLE_LINE" >> $GITHUB_ENV
             - name: Update modio mod description
               run: |
                 curl -X PUT 'https://api.mod.io/v1/games/${{ secrets.MODIO_GAME }}/mods/${{ secrets.MODIO_MOD }}' \
