@@ -32,7 +32,7 @@ jobs:
                 -H 'Authorization: Bearer ${{ secrets.MODIO_TOKEN }}' \
                 -H 'Content-Type: multipart/form-data' \ 
                 -H 'Accept: application/json' \
-                -F "description=$README_HTML" \
+                -F "description=${{ env.README_HTML }}" \
                 -F 'homepage_url=$URL' \
                
 
