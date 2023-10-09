@@ -18,7 +18,6 @@ jobs:
                 pandoc .github/README.md -o README.html
                 README_HTML_SINGLE_LINE=$(cat README.html | tr '\n' ' ')
                 README_ENCODED=$(echo -n "$README_HTML_SINGLE_LINE" | jq -s -R -r @uri)
-                echo "$README_ENCODED"
                 echo "README_HTML=$(printf '%q' "$README_ENCODED")" >> $GITHUB_ENV
             - name: Update modio mod description
               run: |
@@ -45,5 +44,5 @@ jobs:
                     -H 'Content-Type: multipart/form-data' \ 
                     -H 'Accept: application/json' \
                     -F "image$index=@$file"
-                    $index
+                    index=$((index+1))
                 done
