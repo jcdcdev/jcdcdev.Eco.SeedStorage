@@ -19,6 +19,26 @@ jobs:
               run: cat README.html
             - name: Update modio mod description
               run: |
-                curl -X PUT 'https://api.mod.io/v1/games/${{ secrets.MODIO_GAME }}/mods/${{ secrets.MODIO_MOD }}' \
+                curl -X PUT "https://api.mod.io/v1/games/${{ secrets.MODIO_GAME }}/mods/${{ secrets.MODIO_MOD }}" \
                 -H 'Authorization: Bearer ${{ secrets.MODIO_TOKEN }}' \
                 -d "description=${{ env.README_HTML }}"
+            - name: Upload images to mod.io
+              run: |
+                for file in docs/screenshots/*; do
+                    curl -X POST "https://*.modapi.io/v1/games/${{ secrets.MODIO_GAME }}/mods/${{ secrets.MODIO_MOD }}/media" \
+                    -H 'Authorization: Bearer ${{ secrets.MODIO_TOKEN }}' \
+                    -H 'Content-Type: multipart/form-data' \ 
+                    -H 'Accept: application/json' \
+                    -F "images=@$file"
+                done
+            - name: Upload logo to mod.io
+              run: |
+                if [ -f "docs/logo.png" ]; then
+                    curl -X POST "https://*.modapi.io/v1/games/${{ secrets.MODIO_GAME }}/mods/${{ secrets.MODIO_MOD }}/media" \
+                    -H 'Authorization: Bearer ${{ secrets.MODIO_TOKEN }}' \
+                        -H 'Content-Type: multipart/form-data' \ 
+                        -H 'Accept: application/json' \
+                        -F "logo=@docs/logo.png"
+                else
+                    echo "docs/logo.png does not exist"
+                fi
