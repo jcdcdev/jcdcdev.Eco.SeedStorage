@@ -4,15 +4,24 @@
         <TargetFramework>net7.0-windows</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <DebugSymbols>false</DebugSymbols>
+        <DebugType>None</DebugType>
+        <GenerateDependencyFile>false</GenerateDependencyFile>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
         <Version>$([System.DateTime]::UtcNow.ToString(`yyyy.MMdd.HHmm`))</Version>
     </PropertyGroup>
-    
+
     <ItemGroup>
         <PackageReference Include="ElixrMods.Framework" Version="3.4.6"/>
-        <PackageReference Include="jcdcdev.Eco.Core" Version="0.2.0"/>
+        <PackageReference Include="jcdcdev.Eco.Core" Version="0.3.0"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Include="..\Client\BuildOutput\jcdcdev.Eco.SeedStorage.unity3d" CopyToOutputDirectory="Always"/>
+        <Compile Remove="WorldObjects\**\*.cs"/>
+        <None Include="WorldObjects\**\*.cs" CopyToOutputDirectory="Always"/>
     </ItemGroup>
 
 </Project>

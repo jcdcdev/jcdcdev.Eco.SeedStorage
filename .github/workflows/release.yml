@@ -33,7 +33,6 @@ jobs:
       ASSET_NAME: jcdcdev.Eco.SeedStorage-${{ needs.determine-version.outputs.semVer }}
       PROJECT_NAME: jcdcdev.Eco.SeedStorage
       PROJECT_PATH: ./src/Server/jcdcdev.Eco.SeedStorage.csproj
-      BUILD_OUTPUT: ./build-output
       MOD_OUTPUT: ./build-assets/Mods/jcdcdev.Eco.SeedStorage
       ARTIFACT_OUTPUT: ./build-assets
     outputs:
@@ -46,12 +45,7 @@ jobs:
         with:
           dotnet-version: 7.0.x
       - name: Build project
-        run: dotnet build ${{ env.PROJECT_PATH }} -o ${{ env.BUILD_OUTPUT }} --configuration Release -p:Version=${{ env.SEMVER }}
-      - name: Copy Unity Assets
-        run: |
-          mkdir "${{ env.MOD_OUTPUT }}"
-          cp "${{ env.BUILD_OUTPUT }}/${{ env.PROJECT_NAME }}.unity3d" "${{ env.MOD_OUTPUT }}"      
-          cp "${{ env.BUILD_OUTPUT }}/${{ env.PROJECT_NAME }}.dll" "${{ env.MOD_OUTPUT }}"      
+        run: dotnet build ${{ env.PROJECT_PATH }} -o ${{ env.MOD_OUTPUT }} --configuration Release -p:Version=${{ env.SEMVER }}    
       - uses: vimtor/action-zip@v1
         with:
           files: ${{ env.ARTIFACT_OUTPUT }}
