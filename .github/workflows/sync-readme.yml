@@ -28,17 +28,19 @@ jobs:
             - name: Upload logo to mod.io
               run: |
                 if [ -f "docs/logo.png" ]; then
-                    curl -X POST "https://api.mod.io/v1/games/${{ secrets.MODIO_GAME }}/mods/${{ secrets.MODIO_MOD }}/media" \
-                    -H 'Authorization: Bearer ${{ secrets.MODIO_TOKEN }}' \
-                        -H 'Content-Type: multipart/form-data' \ 
-                        -H 'Accept: application/json' \
-                        -F "logo=@docs/logo.png"
                 else
                     echo "docs/logo.png does not exist"
+                    text="${GITHUB_REPOSITORY#$GITHUB_REPOSITORY_OWNER/}"
+                    wget -O docs/logo.png "https://dummyimage.com/1280x720/000000/ffffff&text=${text}"
                 fi
+                curl -X POST "https://api.mod.io/v1/games/${{ secrets.MODIO_GAME }}/mods/${{ secrets.MODIO_MOD }}/media" \
+                -H 'Authorization: Bearer ${{ secrets.MODIO_TOKEN }}' \
+                -H 'Content-Type: multipart/form-data' \ 
+                -H 'Accept: application/json' \
+                -F "logo=@docs/logo.png"
             - name: Upload images to mod.io
               run: |
-                zip images.zip docs/screenshots/*
+                zip -j images.zip docs/screenshots/*
                 curl -X POST "https://api.mod.io/v1/games/${{ secrets.MODIO_GAME }}/mods/${{ secrets.MODIO_MOD }}/media" \
                 -H 'Authorization: Bearer ${{ secrets.MODIO_TOKEN }}' \
                 -H 'Content-Type: multipart/form-data' \ 
