@@ -27,8 +27,7 @@ jobs:
                 -d "description=${{ env.README_HTML }}"
             - name: Upload logo to mod.io
               run: |
-                if [ -f "docs/logo.png" ]; then
-                else
+                if [ ! -f "docs/logo.png" ]; then
                     echo "docs/logo.png does not exist"
                     text="${GITHUB_REPOSITORY#$GITHUB_REPOSITORY_OWNER/}"
                     wget -O docs/logo.png "https://dummyimage.com/1280x720/000000/ffffff&text=${text}"
