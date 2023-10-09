@@ -22,18 +22,18 @@ jobs:
                 echo "README_HTML=$(printf '%q' "$README_ENCODED")" >> $GITHUB_ENV
             - name: Update modio mod description
               run: |
-                curl -X PUT 'https://api.mod.io/v1/games/${{ secrets.MODIO_GAME }}/mods/${{ secrets.MODIO_MOD }}' \
-                -H 'Authorization: Bearer ${{ secrets.MODIO_TOKEN }}' \
-                -d "description=${{ env.README_HTML }}"
-            - name: Upload images to mod.io
-              run: |
                 if [ ! -f "docs/logo.png" ]; then
                     echo "docs/logo.png does not exist"
                     text="${GITHUB_REPOSITORY#$GITHUB_REPOSITORY_OWNER/}"
                     wget -O docs/logo.png "https://dummyimage.com/1280x720/000000/ffffff&text=${text}"
                 fi
-                curl -X POST "https://api.mod.io/v1/games/${{ secrets.MODIO_GAME }}/mods/${{ secrets.MODIO_MOD }}/media" \
+                curl -X PUT 'https://api.mod.io/v1/games/${{ secrets.MODIO_GAME }}/mods/${{ secrets.MODIO_MOD }}' \
                 -H 'Authorization: Bearer ${{ secrets.MODIO_TOKEN }}' \
-                -H 'Content-Type: multipart/form-data' \ 
-                -H 'Accept: application/json' \
-                -F "logo=@/docs/logo.png"
+                -d "description=${{ env.README_HTML }}"
+                -F "logo=@docs/logo.png"
+            # - name: Upload images to mod.io
+            #   run: |
+            #     curl -X POST "https://api.mod.io/v1/games/${{ secrets.MODIO_GAME }}/mods/${{ secrets.MODIO_MOD }}/media" \
+            #     -H 'Authorization: Bearer ${{ secrets.MODIO_TOKEN }}' \
+            #     -H 'Content-Type: multipart/form-data' \ 
+            #     -H 'Accept: application/json' \
