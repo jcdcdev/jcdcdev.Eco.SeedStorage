@@ -33,7 +33,7 @@ jobs:
                 -H 'Content-Type: multipart/form-data' \ 
                 -H 'Accept: application/json' \
                 -F "description=$README_HTML" \
-                -F "logo=@docs/logo.png"
+                -F 'logo=@/docs/logo.png'
                 -F 'homepage_url=$URL' \
 
             # - name: Upload images to mod.io
