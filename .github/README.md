@@ -28,4 +28,4 @@ Adds two new blocks to dramatically increase storage capacity and shelf life of 
 
 Looking to configure shelf life? 
 
-Download [jcdcdev.Eco.ShelfLife](https://mod.io/g/eco/m/jcdcdevecoshelflife) 😀
+Download [jcdcdev.Eco.ShelfLife](https://mod.io/g/eco/m/jcdcdevecoshelflife)
