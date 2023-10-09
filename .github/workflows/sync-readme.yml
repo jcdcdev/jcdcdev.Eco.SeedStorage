@@ -24,18 +24,15 @@ jobs:
               run: |
                 if [ ! -f "docs/logo.png" ]; then
                     echo "docs/logo.png does not exist"
-                    text="${GITHUB_REPOSITORY#$GITHUB_REPOSITORY_OWNER/}"
+                    text="${{ env.GITHUB_REPOSITORY }}#${{ env.GITHUB_REPOSITORY_OWNER }}/}"
                     wget -O docs/logo.png "https://dummyimage.com/1280x720/000000/ffffff&text=${text}"
                 fi
-                URL="https://$GITHUB_SERVER_URL/$GITHUB_REPOSITORY"
                 curl -X POST 'https://api.mod.io/v1/games/${{ secrets.MODIO_GAME }}/mods/${{ secrets.MODIO_MOD }}' \
                 -H 'Authorization: Bearer ${{ secrets.MODIO_TOKEN }}' \
                 -H 'Content-Type: multipart/form-data' \ 
                 -H 'Accept: application/json' \
                 -F "description=${{ env.README_HTML }}" \
-                -F "homepage_url=${URL}"
-               
-
+                -F "homepage_url=https://${{ env.GITHUB_SERVER_URL }}/${{ env.GITHUB_REPOSITORY }}"        
             # - name: Upload images to mod.io
             #   run: |
             #     curl -X POST "https://api.mod.io/v1/games/${{ secrets.MODIO_GAME }}/mods/${{ secrets.MODIO_MOD }}/media" \
