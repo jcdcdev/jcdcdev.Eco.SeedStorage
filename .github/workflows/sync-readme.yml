@@ -29,7 +29,7 @@ jobs:
                 fi
                 curl -X PUT 'https://api.mod.io/v1/games/${{ secrets.MODIO_GAME }}/mods/${{ secrets.MODIO_MOD }}' \
                 -H 'Authorization: Bearer ${{ secrets.MODIO_TOKEN }}' \
-                -d "description=${{ env.README_HTML }}"
+                -d "description=${{ env.README_HTML }}" \
                 -F "logo=@docs/logo.png"
             # - name: Upload images to mod.io
             #   run: |
