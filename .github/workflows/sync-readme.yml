@@ -27,7 +27,7 @@ jobs:
                     text="${{ github.repository }}#${{ github.repository_owner }}/}"
                     wget -O docs/logo.png "https://dummyimage.com/1280x720/000000/ffffff&text=${text}"
                 fi
-                curl -X POST "https://api.mod.io/v1/games/${{ secrets.MODIO_GAME }}/mods/${{ secrets.MODIO_MOD }}" \
+                curl -X POST "https://api.mod.io/v1/games/${{secrets.MODIO_GAME}}/mods/${{secrets.MODIO_MOD}}" \
                 -H 'Authorization: Bearer ${{ secrets.MODIO_TOKEN }}' \
                 -H 'Content-Type: multipart/form-data' \ 
                 -H 'Accept: application/json' \
