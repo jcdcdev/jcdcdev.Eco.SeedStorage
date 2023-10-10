@@ -29,7 +29,7 @@ jobs:
             - name: Remove images from mod.io
               run: |
                   RESPONSE=$(curl -s -H "Authorization: Bearer ${{secrets.MODIO_TOKEN}}" https://api.mod.io/v1/games/${{ secrets.MODIO_GAME }}/mods/${{ secrets.MODIO_MOD }})
-                  IMAGES_JSON=$(echo "$RESPONSE" | jq -r '.data[].media.images[] | @base64')
+                  IMAGES_JSON=$(echo "$RESPONSE" | jq -r '.media.images[] | @base64')
                   for image in $IMAGES_JSON; do
                     filename=$(echo "$image" | base64 --decode | jq -r '.filename')
                     curl -X DELETE "https://api.mod.io/v1/games/${{ secrets.MODIO_GAME }}/mods/${{ secrets.MODIO_MOD }}/media" \
