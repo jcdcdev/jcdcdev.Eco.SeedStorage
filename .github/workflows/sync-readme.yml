@@ -31,8 +31,8 @@ jobs:
                 -H 'Authorization: Bearer ${{ secrets.MODIO_TOKEN }}' \
                 -H 'Content-Type: multipart/form-data' \ 
                 -H 'Accept: application/json' \
-                -F "description=${{ env.README_HTML }}" \
-                -F "homepage_url=https://${{ github.server_url }}/${{ github.repository }}" \
+                -F description=${{ env.README_HTML }} \
+                -F homepage_url=${{ github.server_url }}/${{ github.repository }} \
                    
             # - name: Upload images to mod.io
             #   run: |
