@@ -1,4 +1,11 @@
-## jcdcdev.Eco.SeedBank
+# jcdcdev.Eco.SeedStorage
+
+## Install Steps
+
+- Download the latest version from https://mod.io/g/eco/m/jcdcdevecoseedstorage
+- Extract the zip
+- Copy the extracted `Mods` folder into your Server's `Mods` folder
+- Start the server
 
 [![Latest version on Github](https://badgen.net/github/tag/jcdcdev/jcdcdev.Eco.SeedStorage?label=latest)](https://github.com/jcdcdev/jcdcdev.Eco.SeedStorage/releases/latest) [![Commits](https://badgen.net/github/commits/jcdcdev/jcdcdev.Eco.SeedStorage)](https://github.com/jcdcdev/jcdcdev.Eco.SeedStorage/commits/main)
 
