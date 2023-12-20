@@ -13,13 +13,15 @@ using Eco.Shared.Utils;
 using Eco.Mods.TechTree;
 using Eco.Gameplay.Skills;
 using System.Collections.Generic;
+using Eco.Gameplay.Components.Storage;
+using Eco.Gameplay.Items.Recipes;
+
 namespace Eco.Mods.TechTree
 {
     [Serialized]
     [RequireComponent(typeof(PropertyAuthComponent))]
     [RequireComponent(typeof(LinkComponent))]
     [RequireComponent(typeof(PublicStorageComponent))]
-    [RequireComponent(typeof(SolidAttachedSurfaceRequirementComponent))]
     [Ecopedia("Crafted Objects", "Storage", subPageName: "Wooden Seed Box")]
     public partial class WoodenSeedBoxObject : WorldObject, IRepresentsItem
     {
@@ -40,6 +42,9 @@ namespace Eco.Mods.TechTree
 
         partial void ModsPostInitialize();
         partial void ModsPreInitialize();
+        public override LocString DisplayDescription => Localizer.DoStr(
+            $"Basic storage for seeds! The Wooden Seed Box can store all seed types and slightly increases shelf-life");
+        
     }
 
     [Serialized]
@@ -47,10 +52,7 @@ namespace Eco.Mods.TechTree
     [Ecopedia("Crafted Objects", "Storage", true)]
     public class WoodenSeedBoxItem : WorldObjectItem<WoodenSeedBoxObject>
     {
-        public override LocString DisplayDescription => Localizer.DoStr(
-            $"Basic storage for seeds! The Wooden Seed Box can store all seed types and slightly increases shelf-life");
 
-        public override DirectionAxisFlags RequiresSurfaceOnSides => 0 | DirectionAxisFlags.Down;
     }
 
 

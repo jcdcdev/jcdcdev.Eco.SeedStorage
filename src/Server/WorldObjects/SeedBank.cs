@@ -13,6 +13,8 @@ using Eco.Shared.Utils;
 using Eco.Mods.TechTree;
 using Eco.Gameplay.Skills;
 using System.Collections.Generic;
+using Eco.Gameplay.Components.Storage;
+using Eco.Gameplay.Items.Recipes;
 
 namespace Eco.Mods.TechTree
 {
@@ -20,7 +22,6 @@ namespace Eco.Mods.TechTree
     [RequireComponent(typeof(PropertyAuthComponent))]
     [RequireComponent(typeof(LinkComponent))]
     [RequireComponent(typeof(PublicStorageComponent))]
-    [RequireComponent(typeof(SolidAttachedSurfaceRequirementComponent))]
     [Ecopedia("Crafted Objects", "Storage", subPageName: "Seed Bank")]
     public partial class SeedBankObject : WorldObject, IRepresentsItem
     {
@@ -41,19 +42,16 @@ namespace Eco.Mods.TechTree
 
         partial void ModsPostInitialize();
         partial void ModsPreInitialize();
+        
+        public override LocString DisplayDescription =>
+            Localizer.DoStr(
+                $"The ultimate storage for seeds! The Seed Bank can store all seed types and greatly increases shelf-life");
     }
 
     [Serialized]
     [LocDisplayName("Seed Bank")]
     [Ecopedia("Crafted Objects", "Storage", true)]
-    public class SeedBankItem : WorldObjectItem<SeedBankObject>
-    {
-        public override LocString DisplayDescription =>
-            Localizer.DoStr(
-                $"The ultimate storage for seeds! The Seed Bank can store all seed types and greatly increases shelf-life");
-
-        public override DirectionAxisFlags RequiresSurfaceOnSides => 0 | DirectionAxisFlags.Down;
-    }
+    public class SeedBankItem : WorldObjectItem<SeedBankObject> { }
 
     [RequiresSkill(typeof(FarmingSkill), 6)]
     [Ecopedia("Crafted Objects", "Storage", subPageName: "Seed Bank")]
