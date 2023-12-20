@@ -7,17 +7,17 @@
 - Copy the extracted `Mods` folder into your Server's `Mods` folder
 - Start the server
 
-[![Latest version on Github](https://badgen.net/github/tag/jcdcdev/jcdcdev.Eco.SeedStorage?label=latest)](https://github.com/jcdcdev/jcdcdev.Eco.SeedStorage/releases/latest) [![Commits](https://badgen.net/github/commits/jcdcdev/jcdcdev.Eco.SeedStorage)](https://github.com/jcdcdev/jcdcdev.Eco.SeedStorage/commits/main)
+![Eco Version](https://badgen.net/static/Eco/v0.10.0) [![Latest version on Github](https://badgen.net/github/tag/jcdcdev/jcdcdev.Eco.SeedStorage?label=Mod)](https://github.com/jcdcdev/jcdcdev.Eco.SeedStorage/releases/latest) [![Commits](https://badgen.net/github/commits/jcdcdev/jcdcdev.Eco.SeedStorage)](https://github.com/jcdcdev/jcdcdev.Eco.SeedStorage/commits/main)
 
 Tired of seeing seeds go to waste?
 
 Adds two new blocks to dramatically increase storage capacity and shelf life of seeds
 
-![In game screenshot of the Wooden Seed Box and Seed Bank](https://raw.githubusercontent.com/jcdcdev/jcdcdev.Eco.SeedStorage/main/docs/screenshots/in-game-0.png)
+![In game screenshot of the Wooden Seed Box and Seed Bank](https://raw.githubusercontent.com/jcdcdev/jcdcdev.Eco.SeedStorage/main/docs/screenshots/1-in-game.png)
 
 ### Wooden Seed box
 
-![In game screenshot of the Wooden Seed Box inventory](https://raw.githubusercontent.com/jcdcdev/jcdcdev.Eco.SeedStorage/main/docs/screenshots/in-game-seed-box.png)
+![In game screenshot of the Wooden Seed Box inventory](https://raw.githubusercontent.com/jcdcdev/jcdcdev.Eco.SeedStorage/main/docs/screenshots/2-in-game-seed-box.png)
 
 - 16 slots
     - 400 items
@@ -25,7 +25,7 @@ Adds two new blocks to dramatically increase storage capacity and shelf life of 
 
 ### Seed Bank
 
-![In game screenshot of the Seed Bank inventory](https://raw.githubusercontent.com/jcdcdev/jcdcdev.Eco.SeedStorage/main/docs/screenshots/in-game-seed-bank.png)
+![In game screenshot of the Seed Bank inventory](https://raw.githubusercontent.com/jcdcdev/jcdcdev.Eco.SeedStorage/main/docs/screenshots/3-in-game-seed-bank.png)
 
 - 56 slots (one for each seed item)
     - 4000 items
@@ -35,4 +35,4 @@ Adds two new blocks to dramatically increase storage capacity and shelf life of 
 
 Looking to configure shelf life? 
 
-Download [jcdcdev.Eco.ShelfLife](https://mod.io/g/eco/m/jcdcdevecoshelflife)
+Download [jcdcdev.Eco.SeedStorage](https://mod.io/g/eco/m/jcdcdevecoSeedStorage)
