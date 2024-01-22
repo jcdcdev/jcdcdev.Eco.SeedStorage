@@ -1,13 +1,13 @@
 ## jcdcdev.Eco.SeedStorage
 
+![Eco Version](https://badgen.net/static/Eco/v0.10.1+) [![Latest version on Github](https://badgen.net/github/tag/jcdcdev/jcdcdev.Eco.SeedStorage?label=Mod)](https://github.com/jcdcdev/jcdcdev.Eco.SeedStorage/releases/latest) [![Commits](https://badgen.net/github/commits/jcdcdev/jcdcdev.Eco.SeedStorage)](https://github.com/jcdcdev/jcdcdev.Eco.SeedStorage/commits/main)
+
 ## Install Steps
 
 - Download the latest version from https://mod.io/g/eco/m/jcdcdevecoseedstorage
 - Extract the zip
 - Copy the extracted `Mods` folder into your Server's `Mods` folder
 - Start the server
-
-![Eco Version](https://badgen.net/static/Eco/v0.10.1+) [![Latest version on Github](https://badgen.net/github/tag/jcdcdev/jcdcdev.Eco.SeedStorage?label=Mod)](https://github.com/jcdcdev/jcdcdev.Eco.SeedStorage/releases/latest) [![Commits](https://badgen.net/github/commits/jcdcdev/jcdcdev.Eco.SeedStorage)](https://github.com/jcdcdev/jcdcdev.Eco.SeedStorage/commits/main)
 
 Tired of seeing seeds go to waste?
 
