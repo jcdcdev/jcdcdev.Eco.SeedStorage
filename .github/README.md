@@ -1,6 +1,6 @@
 ## jcdcdev.Eco.SeedStorage
 
-![Eco Version](https://badgen.net/static/Eco/v0.10.3+/3a93b4) 
+![Eco Version](https://badgen.net/static/Eco/v0.10.2.1+/3a93b4) 
 [![Latest version on Github](https://badgen.net/github/tag/jcdcdev/jcdcdev.Eco.SeedStorage?color=3a93b4&label=Mod)](https://github.com/jcdcdev/jcdcdev.Eco.SeedStorage/releases/latest)
 
 
