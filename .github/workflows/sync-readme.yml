@@ -27,11 +27,11 @@ jobs:
           git commit -m "doc: Update version table"
           
           $readme = Get-Content -Path ".github/README.md"
-          $readme = $readme -replace "(?s)(?<=## Version Table).*", $result
+          $newReadme = $readme -replace '(?s)## Version Table.*', "## Version Table`r`n$result"
           
-          Write-Host "new readme=$readme"
+          Write-Host "new readme=$newReadme"
           
-          Set-Content -Path ".github/README.md" -Value $readme
+          Set-Content -Path ".github/README.md" -Value $newReadme
           git add .github/README.md
           git push origin ${{ github.ref }}
       - name: Checkout repository
