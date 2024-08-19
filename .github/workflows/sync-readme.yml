@@ -24,7 +24,6 @@ jobs:
           git config user.name "$env:GITHUB_ACTOR"
           git config user.email "$env:GITHUB_ACTOR_ID+$env:GITHUB_ACTOR@users.noreply.github.com"
           git checkout ${{ github.ref }}
-          git commit -m "doc: Update version table"
           
           $readme = Get-Content -Path ".github/README.md"
           $newReadme = $readme -replace '(?s)## Version Table.*', "## Version Table`r`n$result"
@@ -33,7 +32,9 @@ jobs:
           
           Set-Content -Path ".github/README.md" -Value $newReadme
           git add .github/README.md
+          git commit -m "doc: Update version table"
           git push origin ${{ github.ref }}
+          exit 1
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
