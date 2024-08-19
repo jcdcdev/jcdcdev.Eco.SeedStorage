@@ -178,4 +178,3 @@ $results | ForEach-Object {
 }
 
 Write-Output $markdownTable
-Pop-Location
