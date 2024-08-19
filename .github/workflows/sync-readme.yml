@@ -13,8 +13,7 @@ jobs:
       - name: Update README
         shell: pwsh
         run: |
-          Push-Location -Path ./src
-          $result = ./get-version-table.ps1 -projectFilePath "./Server/jcdcdev.Eco.SeedStorage.csproj"
+          $result = ./get-version-table.ps1 -projectFilePath "./src/Server/jcdcdev.Eco.SeedStorage.csproj"
           Write-Host "result=$result"
           $readme = Get-Content -Path ".github/README.md"
           $readme = $readme -replace "(?s)(?<=## Version Table).*", $result
@@ -22,7 +21,6 @@ jobs:
           $readme | Set-Content -Path ".github/README.md"
           git commit -m "doc: Update version table"
           git push
-          Pop-Location
       - name: Sync with mod.io
         uses: jcdcdev/jcdcdev.Modio.SyncDocs@main
         with:
