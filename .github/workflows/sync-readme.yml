@@ -11,6 +11,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Update README
+        shell: pwsh
         run: |
           Push-Location -Path ./src
           $result = ./get-version-table.ps1
