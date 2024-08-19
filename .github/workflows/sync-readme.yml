@@ -31,7 +31,7 @@ jobs:
           
           Write-Host "new readme=$readme"
           
-          $readme | Set-Content -Path ".github/README.md"
+          Set-Content -Path ".github/README.md" -Value $readme
           git add .github/README.md
           git push origin ${{ github.ref }}
       - name: Checkout repository
