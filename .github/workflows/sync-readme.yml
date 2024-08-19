@@ -13,7 +13,7 @@ jobs:
       - name: Update README
         shell: pwsh
         run: |
-          $result = ./get-version-table.ps1 -projectFilePath "./src/Server/jcdcdev.Eco.SeedStorage.csproj"
+          $result = ./src/get-version-table.ps1 -projectFilePath "./src/Server/jcdcdev.Eco.SeedStorage.csproj"
           Write-Host "result=$result"
           $readme = Get-Content -Path ".github/README.md"
           $readme = $readme -replace "(?s)(?<=## Version Table).*", $result
