@@ -153,7 +153,7 @@ if ($projectFilePath -eq $null)
     exit
 }
 
-$results = Check-Tags -packageId $PackageId -csprojPath $csprojFile
+$results = Check-Tags -packageId $PackageId -csprojPath $projectFilePath
 
 $markdownTable = @"
 | Version | Core Version | Game Version |
