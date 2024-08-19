@@ -33,7 +33,7 @@ jobs:
           Set-Content -Path ".github/README.md" -Value $newReadme
           git add .github/README.md
           git commit -m "doc: Update version table"
-          git push origin ${{ github.ref }}
+          git push origin
           exit 1
       - name: Checkout repository
         uses: actions/checkout@v4
