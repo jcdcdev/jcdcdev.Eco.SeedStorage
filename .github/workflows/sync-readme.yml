@@ -40,7 +40,6 @@ jobs:
           git add .github/README.md
           git commit -m "doc: Update version table"
           git push origin
-          exit 1
       - name: Sync with mod.io
         uses: jcdcdev/jcdcdev.Modio.SyncDocs@main
         with:
