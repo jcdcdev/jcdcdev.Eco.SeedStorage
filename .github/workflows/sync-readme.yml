@@ -10,6 +10,18 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+      - name: Update README
+        run: |
+          Push-Location -Path ./src
+          $result = ./get-version-table.ps1
+          Write-Host "result=$result"
+          $readme = Get-Content -Path ".github/README.md"
+          $readme = $readme -replace "(?s)(?<=## Version Table).*", $result
+          Write-Host "new readme=$readme"
+          $readme | Set-Content -Path ".github/README.md"
+          git commit -m "doc: Update version table"
+          git push
+          Pop-Location
       - name: Sync with mod.io
         uses: jcdcdev/jcdcdev.Modio.SyncDocs@main
         with:
