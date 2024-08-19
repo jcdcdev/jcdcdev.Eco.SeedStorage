@@ -15,30 +15,31 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Update README
+      - name: Get README
+        id: get-readme
         shell: pwsh
         run: |
           $result = ./src/get-version-table.ps1 -projectFilePath "./src/Server/jcdcdev.Eco.SeedStorage.csproj"
           Write-Host "result=$result"
-
+          Write-Output "readme=$($readme)" >> $env:GITHUB_OUTPUT
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Update README
+        run: |
+          $result = ${{ steps.get-readme.outputs.readme }}
           git config user.name "$env:GITHUB_ACTOR"
           git config user.email "$env:GITHUB_ACTOR_ID+$env:GITHUB_ACTOR@users.noreply.github.com"
-          git checkout ${{ github.ref }}
-          
+
           $readme = Get-Content -Path ".github/README.md"
           $newReadme = $readme -replace '(?s)## Version Table.*', "## Version Table`r`n$result"
-          
+
           Write-Host "new readme=$newReadme"
-          
+
           Set-Content -Path ".github/README.md" -Value $newReadme
           git add .github/README.md
           git commit -m "doc: Update version table"
           git push origin
           exit 1
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
       - name: Sync with mod.io
         uses: jcdcdev/jcdcdev.Modio.SyncDocs@main
         with:
