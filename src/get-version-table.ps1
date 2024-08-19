@@ -1,8 +1,8 @@
 ﻿param (
-    [string]$projectFilePath
+    [string]$ProjectFilePath,
+    [string]$ProjectId
 )
 
-$PackageId = "jcdcdev.eco.core"
 function To-GameVer
 {
     param (
@@ -91,15 +91,14 @@ function Get-PackageVersion
 function Get-EcoVersionFromPackage
 {
     param (
-        [string]$yayaya,
-        [string]$Version
+        [string]$packageId,
+        [string]$version
     )
-    $nugetApiUrl = "https://api.nuget.org/v3/registration5-gz-semver2/$yayaya/$Version.json"
+    $nugetApiUrl = "https://api.nuget.org/v3/registration5-gz-semver2/$packageId/$version.json"
     $response = Invoke-RestMethod -Uri $nugetApiUrl
     $catalogEntryUrl = $response.catalogEntry
-    $yaaaaa = Check-Dependencies -catalogEntryUrl $catalogEntryUrl
-    $hello = To-GameVer -version $yaaaaa
-    return $hello
+    $ecoVersion = Check-Dependencies -catalogEntryUrl $catalogEntryUrl
+    return To-GameVer -version $ecoVersion
 }
 
 function Check-Tags
@@ -129,12 +128,12 @@ function Check-Tags
             }
             else
             {
-                $ecoVersion = Get-EcoVersionFromPackage -yayaya $ya -Version $yaversion
+                $ecoVersion = Get-EcoVersionFromPackage -packageId $ya -version $yaversion
             }
         }
         else
         {
-            $ecoVersion = Get-EcoVersionFromPackage -yayaya $packageId -Version $version
+            $ecoVersion = Get-EcoVersionFromPackage -packageId $packageId -version $version
         }
         $results += [PSCustomObject]@{
             Tag = $tag
@@ -147,14 +146,14 @@ function Check-Tags
     return $results
 }
 
-if ($projectFilePath -eq $null)
+$PackageId = "jcdcdev.eco.core"
+if ($ProjectFilePath -eq $null)
 {
     Write-Output "No .csproj file selected. Exiting."
     exit
 }
 
-$results = Check-Tags -packageId $PackageId -csprojPath $projectFilePath
-
+$results = Check-Tags -packageId $PackageId -csprojPath $ProjectFilePath
 $markdownTable = @"
 | Version | Core Version | Game Version |
 |-----|---------| -----------|`n
@@ -171,7 +170,7 @@ $results | ForEach-Object {
     {
         $versionTxt = "[$( $_.Version )](https://github.com/jcdcdev/jcdcdev.Eco.Core/releases/tag/$( $_.Version ))"
     }
-    $tagTxt = "[$( $_.Tag )](https://github.com/jcdcdev/$PackageId/releases/tag/$( $_.Tag ))"
+    $tagTxt = "[$( $_.Tag )](https://github.com/jcdcdev/$ProjectId/releases/tag/$( $_.Tag ))"
     $markdownTable += "| $tagTxt | $versionTxt | $( $_.EcoVersion ) |
 "
 }

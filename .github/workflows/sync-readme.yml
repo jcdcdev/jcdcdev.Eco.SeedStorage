@@ -18,7 +18,7 @@ jobs:
       - name: Get README
         id: get-readme
         run: |
-          result=$(pwsh ./src/get-version-table.ps1 -projectFilePath "./src/Server/jcdcdev.Eco.SeedStorage.csproj")
+          result=$(pwsh ./src/get-version-table.ps1 -ProjectFilePath "./src/Server/jcdcdev.Eco.SeedStorage.csproj" -PackageId "jcdcdev.Eco.SeedStorage")
           {
             echo 'result<<EOF'
             echo "${result}"
@@ -56,5 +56,3 @@ jobs:
           modio-game: "${{ secrets.MODIO_GAME }}"
           modio-mod: "${{ secrets.MODIO_MOD }}"
           modio-token: "${{ secrets.MODIO_TOKEN }}"     
-            
-      
