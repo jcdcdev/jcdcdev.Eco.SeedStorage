@@ -15,15 +15,18 @@ jobs:
         run: |
           $result = ./src/get-version-table.ps1 -projectFilePath "./src/Server/jcdcdev.Eco.SeedStorage.csproj"
           Write-Host "result=$result"
-          $readme = Get-Content -Path ".github/README.md"
-          $readme = $readme -replace "(?s)(?<=## Version Table).*", $result
-          Write-Host "new readme=$readme"
-          $readme | Set-Content -Path ".github/README.md"
 
-          git checkout ${{ github.ref }}
           git config user.name "$env:GITHUB_ACTOR"
           git config user.email "$env:GITHUB_ACTOR_ID+$env:GITHUB_ACTOR@users.noreply.github.com"
+          git checkout ${{ github.ref }}
           git commit -m "doc: Update version table"
+          
+          $readme = Get-Content -Path ".github/README.md"
+          $readme = $readme -replace "(?s)(?<=## Version Table).*", $result
+          
+          Write-Host "new readme=$readme"
+          
+          $readme | Set-Content -Path ".github/README.md"
           git push origin ${{ github.ref }}
       - name: Sync with mod.io
         uses: jcdcdev/jcdcdev.Modio.SyncDocs@main
