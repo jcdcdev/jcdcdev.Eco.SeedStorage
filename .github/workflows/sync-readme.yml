@@ -32,7 +32,12 @@ jobs:
           Write-Host "new readme=$readme"
           
           $readme | Set-Content -Path ".github/README.md"
+          git add .github/README.md
           git push origin ${{ github.ref }}
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - name: Sync with mod.io
         uses: jcdcdev/jcdcdev.Modio.SyncDocs@main
         with:
