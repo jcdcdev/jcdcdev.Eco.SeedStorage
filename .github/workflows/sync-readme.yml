@@ -36,7 +36,12 @@ jobs:
           $readme = Get-Content -Path ".github/README.md"
           $newReadme = $readme -replace '## Version Table.*', "## Version Table`r`n$result"
           Write-Host "new readme=$newReadme"
-
+          
+          if ($newReadme -eq $readme) {
+            Write-Host "No changes to README"
+            exit 0
+          }
+          
           Set-Content -Path ".github/README.md" -Value $newReadme
           git add .github/README.md
           git commit -m "doc: Update version table"
