@@ -25,6 +25,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
       - name: Update README
+        shell: pwsh
         run: |
           $result = ${{ steps.get-readme.outputs.readme }}
           git config user.name "$env:GITHUB_ACTOR"
