@@ -29,7 +29,7 @@ jobs:
       - name: Update README
         shell: pwsh
         run: |
-          $result = ${{ steps.get-readme.outputs.result }}
+          $result = "${{ steps.get-readme.outputs.result }}"
           git config user.name "$env:GITHUB_ACTOR"
           git config user.email "$env:GITHUB_ACTOR_ID+$env:GITHUB_ACTOR@users.noreply.github.com"
 
