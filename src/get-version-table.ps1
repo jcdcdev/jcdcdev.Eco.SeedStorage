@@ -1,5 +1,8 @@
-﻿$PackageId = "jcdcdev.eco.core"
+﻿param (
+    [string]$projectFilePath
+)
 
+$PackageId = "jcdcdev.eco.core"
 function To-GameVer
 {
     param (
@@ -144,11 +147,7 @@ function Check-Tags
     return $results
 }
 
-$csprojFiles = Get-ChildItem -Path . -Filter *.csproj -Recurse
-
-$csprojFileChoices = $csprojFiles | ForEach-Object { $_.FullName }
-$csprojFile = $csprojFileChoices[0]
-if ($csprojFile -eq $null)
+if ($projectFilePath -eq $null)
 {
     Write-Output "No .csproj file selected. Exiting."
     exit

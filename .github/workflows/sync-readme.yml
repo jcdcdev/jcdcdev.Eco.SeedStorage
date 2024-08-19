@@ -14,7 +14,7 @@ jobs:
         shell: pwsh
         run: |
           Push-Location -Path ./src
-          $result = ./get-version-table.ps1
+          $result = ./get-version-table.ps1 -projectFilePath "./Server/jcdcdev.Eco.SeedStorage.csproj"
           Write-Host "result=$result"
           $readme = Get-Content -Path ".github/README.md"
           $readme = $readme -replace "(?s)(?<=## Version Table).*", $result
