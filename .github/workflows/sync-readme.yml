@@ -7,9 +7,14 @@ jobs:
   sync_modio:
     runs-on: ubuntu-latest
     name: 'Sync mod.io README and Images'
+    permissions:
+      contents: write
+      pull-requests: write
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - name: Update README
         shell: pwsh
         run: |
