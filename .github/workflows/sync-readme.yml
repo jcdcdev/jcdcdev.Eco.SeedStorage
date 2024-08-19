@@ -34,8 +34,10 @@ jobs:
           git config user.email "$env:GITHUB_ACTOR_ID+$env:GITHUB_ACTOR@users.noreply.github.com"
 
           $readme = Get-Content -Path ".github/README.md"
-          $newReadme = $readme -replace '(?s)## Version Table.*', "## Version Table`r`n$result"
-
+#          $newReadme = $readme -replace '(?s)## Version Table.*', "## Version Table`r`n$result"
+# split on ## Version Table and preserve the first part
+          $readmeParts = $readme -split '## Version Table'
+          $newReadme = $readmeParts[0] + "## Version Table`r`n$result"
           Write-Host "new readme=$newReadme"
 
           Set-Content -Path ".github/README.md" -Value $newReadme
