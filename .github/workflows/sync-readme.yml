@@ -21,7 +21,7 @@ jobs:
         run: |
           $result = ./src/get-version-table.ps1 -projectFilePath "./src/Server/jcdcdev.Eco.SeedStorage.csproj"
           Write-Host "result=$result"
-          Write-Output "readme=$($readme)" >> $env:GITHUB_OUTPUT
+          Write-Output "readme=$($result)" >> $env:GITHUB_OUTPUT
       - name: Checkout repository
         uses: actions/checkout@v4
       - name: Update README
