@@ -38,3 +38,4 @@ Adds two new blocks to dramatically increase storage capacity and shelf life of 
 Looking to configure shelf life? Try out [jcdcdev.Eco.SeedStorage](https://mod.io/g/eco/m/jcdcdevecoSeedStorage)!
 
 ## Version Table
+
