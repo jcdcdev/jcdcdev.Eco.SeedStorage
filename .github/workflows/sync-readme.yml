@@ -18,7 +18,7 @@ jobs:
       - name: Get README
         id: get-readme
         run: |
-          result=$(pwsh ./src/get-version-table.ps1 -ProjectFilePath "./src/Server/jcdcdev.Eco.SeedStorage.csproj" -PackageId "jcdcdev.Eco.SeedStorage")
+          result=$(pwsh ./src/get-version-table.ps1 -ProjectId "jcdcdev.Eco.SeedStorage")
           {
             echo 'result<<EOF'
             echo "${result}"
