@@ -14,7 +14,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="jcdcdev.Eco.Core" Version="11.1.10"                     />
+        <PackageReference Include="jcdcdev.Eco.Core" Version="11.1.11"                      />
     </ItemGroup>
 
     <PropertyGroup>
