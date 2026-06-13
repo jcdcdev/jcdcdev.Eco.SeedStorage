@@ -40,6 +40,7 @@ Looking to configure shelf life? Try out [jcdcdev.Eco.SeedStorage](https://mod.i
 ## Version Table
 | Version | Core Version | Game Version |
 |-----|---------| -----------|
+| [13.0.4](https://github.com/jcdcdev/jcdcdev.Eco.SeedStorage/releases/tag/13.0.4) | [13.0.4](https://github.com/jcdcdev/jcdcdev.Eco.Core/releases/tag/13.0.4) | 13.0.4 |
 | [13.0.3](https://github.com/jcdcdev/jcdcdev.Eco.SeedStorage/releases/tag/13.0.3) | [13.0.3](https://github.com/jcdcdev/jcdcdev.Eco.Core/releases/tag/13.0.3) | 13.0.3 |
 | [13.0.2](https://github.com/jcdcdev/jcdcdev.Eco.SeedStorage/releases/tag/13.0.2) | [13.0.2](https://github.com/jcdcdev/jcdcdev.Eco.Core/releases/tag/13.0.2) | 13.0.2 |
 | [13.0.1](https://github.com/jcdcdev/jcdcdev.Eco.SeedStorage/releases/tag/13.0.1) | [13.0.1](https://github.com/jcdcdev/jcdcdev.Eco.Core/releases/tag/13.0.1) | 13.0.1 |
